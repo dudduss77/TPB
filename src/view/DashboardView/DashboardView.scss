@@ -10,4 +10,24 @@
   'task budgetTwo goals';
   gap: 20px;
   padding: 20px;
+
+  &__plan {
+    grid-area: plan;
+  }
+
+  &__task {
+    grid-area: task;
+  }
+
+  &__budgetOne {
+    grid-area: budgetOne;
+  }
+
+  &__budgetTwo {
+    grid-area: budgetTwo;
+  }
+
+  &__goals {
+    grid-area: goals;
+  }
 }
