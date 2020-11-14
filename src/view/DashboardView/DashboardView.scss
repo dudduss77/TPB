@@ -1,0 +1,13 @@
+.dashboardView {
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  background: #343B45;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 2.5fr 1fr 1fr;
+  grid-template-areas: 'plan plan plan'
+  'task budgetOne goals'
+  'task budgetTwo goals';
+  gap: 20px;
+  padding: 20px;
+}

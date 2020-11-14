@@ -1,9 +1,9 @@
 import React from "react"
+import './DashboardView.scss'
 
 const DashboardView = () => {
   return (
-    <div>
-      <h1>DashBoard</h1>
+    <div className="dashboardView">
     </div>   
   )
 }
