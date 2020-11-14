@@ -1,14 +1,10 @@
 import React, {useState} from 'react';
 import './LayoutView.scss';
 
-import DashBoardView from '../DashboardView/DashboardView'
-import PlansAndTasksView from '../PlansAndTasksView/PlansAndTasksView'
-
 
 import {
   BrowserRouter as Router,
-  Switch,
-  Route
+  Route, Switch
 } from "react-router-dom";
 import {routes} from '../../routeConfig'
 
@@ -26,16 +22,18 @@ const LayoutView = () => {
           onAddClick={() => setShowAdd(true)}
         />
       </div>
-      <div className="layoutView__nav">
-        <NavComponent />
-      </div>
-      <div className="layoutView__content">
-        <Router>
-          {routes.map((route) => (
-            <Route exact key={route.path} path={route.path} component={route.component} />
-          ))}
-        </Router>
-      </div>
+      <Router>
+        <div className="layoutView__nav">
+          <NavComponent />
+        </div>
+        <div className="layoutView__content">
+          <Switch>
+            {routes.map((route) => (
+              <Route exact key={route.path} path={route.path} component={route.component} />
+            ))}
+          </Switch>
+        </div>
+      </Router>
     </div>
   )
 }
