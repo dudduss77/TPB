@@ -16,5 +16,9 @@
     font-size: 1.1em;
     font-weight: 700;
     margin-left: 10px;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
   }
 }

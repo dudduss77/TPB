@@ -1,0 +1,20 @@
+.navLinkComponent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 1.4em;
+  &__icon {
+    margin-left: 10px;
+    width: 22.4px;
+    display: flex;
+    justify-content: center;
+  }
+  &__linkname {
+    margin-left: 10px;
+  }
+  &:hover {
+    cursor: pointer;
+    background: #262B33;
+  }
+}
