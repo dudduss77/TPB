@@ -3,7 +3,7 @@
   height: calc(100% - 40px);
   background: #343B45;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 0.8fr 1fr;
   grid-template-rows: 2.5fr 1fr 1fr;
   grid-template-areas: 'plan plan plan'
   'task budgetOne goals'
@@ -30,4 +30,11 @@
   &__goals {
     grid-area: goals;
   }
+}
+
+.itemsWrapper {
+  width: 100%;
+  min-height: calc(100% - 45px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }

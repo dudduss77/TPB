@@ -5,11 +5,19 @@ import ReusableContainerComponent from "../../components/reusableContainerCompon
 import HeaderComponent from "../../components/headerComponent/HeaderComponent";
 import ReusableSettingsComponent from "../../components/reusableSettingsComponent/ReusableSettingsComponent";
 import ValueComponent from '../../components/valueComponent/ValueComponent'
+import TaskComponent from '../../components/taskComponent/TaskComponent'
 
 const DashboardView = () => {
   return (
     <div className="dashboardView">
-      <div className="dashboardView__plan"></div>
+      <div className="dashboardView__plan">
+        <ReusableContainerComponent>
+            <HeaderComponent
+              headerTitle="Plan tygodniowy"
+              settingsComponent={<ReusableSettingsComponent />}
+            />
+          </ReusableContainerComponent>
+      </div>
 
       <div className="dashboardView__task">
         <ReusableContainerComponent>
@@ -17,6 +25,15 @@ const DashboardView = () => {
             headerTitle="Zadania na dziś"
             settingsComponent={<ReusableSettingsComponent />}
           />
+          <div className="itemsWrapper">
+            <TaskComponent 
+              taskCheck={true}
+              taskTitle="Testowe Zadanie"
+              taskDate="14.11.2020"
+              taskEdit={true}
+              taskStatus={false}
+            />
+          </div>
         </ReusableContainerComponent>
       </div>
 

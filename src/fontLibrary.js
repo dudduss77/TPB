@@ -8,6 +8,13 @@ import {
   faBullseye,
   faSignOutAlt,
   faCog,
+  faCheck,
+  faTimes,
+  faEdit,
+  faTrashAlt,
+  faAngleDown,
+  faReply,
+  faAngleUp
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -18,5 +25,12 @@ library.add(
   faDollarSign,
   faBullseye,
   faSignOutAlt,
-  faCog
+  faCog,
+  faCheck,
+  faTimes,
+  faEdit,
+  faTrashAlt,
+  faAngleDown,
+  faReply,
+  faAngleUp
 );
