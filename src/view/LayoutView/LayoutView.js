@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./LayoutView.scss";
 
+import { useWindowSize } from "../../customHook/useWindowSize";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { routes } from "../../routeConfig";
 
@@ -11,6 +13,9 @@ const LayoutView = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const size = useWindowSize();
+
+  document.documentElement.style.setProperty('--vh', `${size.height *0.01}px`)
   return (
     <div className="layoutView">
       <div className="layoutView__top">

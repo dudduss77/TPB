@@ -1,6 +1,7 @@
 .layoutView {
   width: 100vw;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -59,6 +60,14 @@
     }
   }
 }
+
+// @media screen and (max-width: 1230px) {
+//   .layoutView {
+//     &__content {
+//       width: 100vw;
+//     }
+//   }
+// }
 
 .isDisplay {
   display: flex;
