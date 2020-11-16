@@ -4,20 +4,20 @@ import "./DashboardView.scss";
 import ReusableContainerComponent from "../../components/reusableContainerComponent/ReusableContainerComponent";
 import HeaderComponent from "../../components/headerComponent/HeaderComponent";
 import ReusableSettingsComponent from "../../components/reusableSettingsComponent/ReusableSettingsComponent";
-import ValueComponent from '../../components/valueComponent/ValueComponent'
-import TaskComponent from '../../components/taskComponent/TaskComponent'
-import GoalComponent from '../../components/goalComponent/GoalComponent'
+import ValueComponent from "../../components/valueComponent/ValueComponent";
+import TaskComponent from "../../components/taskComponent/TaskComponent";
+import GoalComponent from "../../components/goalComponent/GoalComponent";
 
 const DashboardView = () => {
   return (
     <div className="dashboardView">
       <div className="dashboardView__plan">
         <ReusableContainerComponent>
-            <HeaderComponent
-              headerTitle="Plan tygodniowy"
-              settingsComponent={<ReusableSettingsComponent />}
-            />
-          </ReusableContainerComponent>
+          <HeaderComponent
+            headerTitle="Plan tygodniowy"
+            settingsComponent={<ReusableSettingsComponent />}
+          />
+        </ReusableContainerComponent>
       </div>
 
       <div className="dashboardView__task">
@@ -27,7 +27,7 @@ const DashboardView = () => {
             settingsComponent={<ReusableSettingsComponent />}
           />
           <div className="itemsWrapper">
-            <TaskComponent 
+            <TaskComponent
               taskCheck={true}
               taskTitle="Testowe Zadanie"
               taskDate="14.11.2020"
@@ -48,14 +48,14 @@ const DashboardView = () => {
             headerTitle="Twój budżet"
             settingsComponent={<ReusableSettingsComponent />}
           />
-          <ValueComponent moneyValue="123"/>
+          <ValueComponent moneyValue="123" />
         </ReusableContainerComponent>
       </div>
 
       <div className="dashboardView__budgetTwo">
         <ReusableContainerComponent>
           <HeaderComponent headerTitle="Dzisiaj wydałeś" />
-          <ValueComponent moneyValue="999999.99"/>
+          <ValueComponent moneyValue="999999.99" />
         </ReusableContainerComponent>
       </div>
 

@@ -3,8 +3,8 @@
   height: 100%;
   background: #2C323A;
   display: grid;
-  grid-template-columns: 250px 1fr 75px 75px;
-  grid-template-areas: 'logo empty notify add';
+  grid-template-columns: 250px 1fr 75px 75px 75px;
+  grid-template-areas: 'logo empty notify add hamburger';
 
   &__logo {
     grid-area: logo;
@@ -16,5 +16,28 @@
 
   &__add {
     grid-area: add;
+  }
+
+  &__hamburger {
+    grid-area: hamburger;
+  }
+}
+
+@media screen and (min-width: 1680px) {
+  .topComponent {
+    grid-template-columns: 250px 1fr 75px 75px 0;
+    &__hamburger {
+      display: none;
+    }
+  }
+}
+
+
+@media screen and (max-width: 1680px) {
+  .topComponent {
+    grid-template-columns: 250px 1fr 75px 75px 75px;
+    &__hamburger {
+      display: block;
+    }
   }
 }
