@@ -41,10 +41,7 @@ const TaskComponent = (props) => {
       {showMore && (
         <div className="taskComponent__description">
           <div className="taskComponent__description__content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-            euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
-            bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
-            eget nisl eu lacus pulvinar semper eget in libero.
+            {props.taskDesc}
           </div>
           {!props.taskCheck && (
             <div

@@ -14,7 +14,8 @@ import {
   faTrashAlt,
   faAngleDown,
   faReply,
-  faAngleUp
+  faAngleUp,
+  faPen
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -32,5 +33,6 @@ library.add(
   faTrashAlt,
   faAngleDown,
   faReply,
-  faAngleUp
+  faAngleUp,
+  faPen
 );

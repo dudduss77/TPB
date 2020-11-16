@@ -6,6 +6,7 @@ import HeaderComponent from "../../components/headerComponent/HeaderComponent";
 import ReusableSettingsComponent from "../../components/reusableSettingsComponent/ReusableSettingsComponent";
 import ValueComponent from '../../components/valueComponent/ValueComponent'
 import TaskComponent from '../../components/taskComponent/TaskComponent'
+import GoalComponent from '../../components/goalComponent/GoalComponent'
 
 const DashboardView = () => {
   return (
@@ -30,6 +31,10 @@ const DashboardView = () => {
               taskCheck={true}
               taskTitle="Testowe Zadanie"
               taskDate="14.11.2020"
+              taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
+                bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
+                eget nisl eu lacus pulvinar semper eget in libero."
               taskEdit={true}
               taskStatus={false}
             />
@@ -57,6 +62,18 @@ const DashboardView = () => {
       <div className="dashboardView__goals">
         <ReusableContainerComponent>
           <HeaderComponent headerTitle="Cele" />
+          <div className="itemsWrapper">
+            <GoalComponent
+              goalTitle="Kupić samochód"
+              goalDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
+                bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
+                eget nisl eu lacus pulvinar semper eget in libero."
+              goalActualValue={0}
+              goalEndValue={100}
+              goalHistory={false}
+            />
+          </div>
         </ReusableContainerComponent>
       </div>
     </div>
