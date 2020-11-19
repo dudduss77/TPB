@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./LayoutView.scss";
 
 import { useWindowSize } from "../../customHook/useWindowSize";
@@ -6,8 +6,16 @@ import { useWindowSize } from "../../customHook/useWindowSize";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { routes } from "../../routeConfig";
 
+//Context
+import { TaskContext } from '../../App'
+
+//Actions
+import {ACTIONS} from '../../reducers/taskReducer'
+
+//Components
 import TopComponent from "../../components/topComponent/TopComponent";
 import NavComponent from "../../components/navComponent/NavComponent";
+
 
 const LayoutView = () => {
   const [showNotification, setShowNotification] = useState(false);
@@ -15,13 +23,16 @@ const LayoutView = () => {
   const [showMenu, setShowMenu] = useState(false);
   const size = useWindowSize();
 
+  const taskContext = useContext(TaskContext);
+
   document.documentElement.style.setProperty('--vh', `${size.height *0.01}px`)
   return (
     <div className="layoutView">
       <div className="layoutView__top">
         <TopComponent
           onNotificationClick={() => setShowNotification(true)}
-          onAddClick={() => setShowAdd(true)}
+          // onAddClick={() => setShowAdd(true)}
+          onAddClick={() => taskContext.tasksDispatch({type: ACTIONS.ADDTASK, payload: {taskTitle: 'Test'}})}
           onHamburgerClick={() => setShowMenu(!showMenu)}
         />
       </div>
