@@ -1,0 +1,16 @@
+.barComponent {
+  &__external {
+    width: 100%;
+    height: 15px;
+    background: #AAAAAA;
+    &__internal {
+      background: #059B00;
+      height: 100%;
+    }
+  }
+  &__value {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+  }
+}

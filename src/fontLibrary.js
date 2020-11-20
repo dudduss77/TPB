@@ -1,4 +1,42 @@
-import {library} from '@fortawesome/fontawesome-svg-core';
-import { faBell, faPlus, faHome,  faTasks, faDollarSign, faBullseye, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faBell,
+  faPlus,
+  faHome,
+  faTasks,
+  faDollarSign,
+  faBullseye,
+  faSignOutAlt,
+  faCog,
+  faCheck,
+  faTimes,
+  faEdit,
+  faTrashAlt,
+  faAngleDown,
+  faReply,
+  faAngleUp,
+  faPen,
+  faBars,
+  faCalendar
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faBell, faPlus, faHome,  faTasks, faDollarSign, faBullseye, faSignOutAlt)
+library.add(
+  faBell,
+  faPlus,
+  faHome,
+  faTasks,
+  faDollarSign,
+  faBullseye,
+  faSignOutAlt,
+  faCog,
+  faCheck,
+  faTimes,
+  faEdit,
+  faTrashAlt,
+  faAngleDown,
+  faReply,
+  faAngleUp,
+  faPen,
+  faBars,
+  faCalendar
+);

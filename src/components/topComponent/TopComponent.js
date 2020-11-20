@@ -4,6 +4,7 @@ import './TopComponent.scss'
 import LogoComponent from '../logoComponent/LogoComponent'
 import NotificationIconComponent from '../notificationIconComponent/NotificationIconComponent'
 import AddIconComponent from '../addIconComponent/AddIconComponent'
+import HamburgerIconComponent from '../hamburgerIconComponent/HamburgerIconComponent'
 
 const TopComponent = (props) => {
   return (
@@ -18,7 +19,9 @@ const TopComponent = (props) => {
       <div className="topComponent__add">
         <AddIconComponent onAddClick={props.onAddClick}/>
       </div>
-      
+      <div className="topComponent__hamburger">
+        <HamburgerIconComponent onHamburgerClick={props.onHamburgerClick}/>
+      </div>
     </div>
   )
 }

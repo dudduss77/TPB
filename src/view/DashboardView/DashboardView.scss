@@ -1,0 +1,83 @@
+.dashboardView {
+  width: 100%;
+  height: 100%;
+  background: #343b45;
+  display: flex;
+  flex-direction: column;
+  &__wrapper {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: minmax(400px, 1fr) minmax(350px, 0.7fr) minmax(
+        400px,
+        1fr
+      );
+    grid-template-rows: 2.5fr 1fr 1fr;
+    grid-template-areas:
+      "plan plan plan"
+      "task budgetOne goals"
+      "task budgetTwo goals";
+    gap: 20px;
+    padding: 20px;
+
+    &__plan {
+      grid-area: plan;
+    }
+
+    &__task {
+      grid-area: task;
+    }
+
+    &__budgetOne {
+      grid-area: budgetOne;
+    }
+
+    &__budgetTwo {
+      grid-area: budgetTwo;
+    }
+
+    &__goals {
+      grid-area: goals;
+    }
+  }
+}
+
+.itemsWrapper {
+  width: 100%;
+  min-height: calc(100% - 45px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media screen and (min-width: 1230px) {
+  .dashboardView {
+    &__subMenu {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .dashboardView {
+    &__wrapper {
+      width: 400vw;
+      height: 100%;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        "plan task budgetOne goals"
+        "plan task budgetTwo goals";
+      padding: 0;
+      gap: 0;
+    }
+    &__subMenu {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: #262b33;
+      width: 100vw;
+      height: 75px;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
