@@ -17,7 +17,10 @@ import {
   faAngleUp,
   faPen,
   faBars,
-  faCalendar
+  faCalendar,
+  faAngleRight,
+  faAngleLeft,
+  faHistory
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -38,5 +41,8 @@ library.add(
   faAngleUp,
   faPen,
   faBars,
-  faCalendar
+  faCalendar,
+  faAngleRight,
+  faAngleLeft,
+  faHistory
 );

@@ -1,0 +1,47 @@
+.selectComponent {
+  width: 100%;
+  border: none;
+  text-align: center;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  background: #464C55;
+  color: #aaa;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__wrapper {
+    display: flex;
+    &__actual {
+      padding: 5px 0;
+      flex: 1 1 auto;
+    }
+  
+    &__arrow {
+      flex: 0 1 auto;
+      width: calc(1.2em + 10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #373C43;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__optionWrapper {
+    position: absolute;
+    top: calc(1.2em + 9px);
+    background: #464C55;
+    width: 100%;
+    &__option {
+      padding: 5px 0;
+      &:hover {
+        background: #373C43;
+        cursor: pointer;
+      }
+    }
+  }
+}
