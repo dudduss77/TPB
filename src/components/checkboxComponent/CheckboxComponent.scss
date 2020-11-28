@@ -1,0 +1,25 @@
+.checkboxComponent {
+  // width: 100%;
+  &__input {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    &__checkbox {
+      width: calc(1.4em + 10px);
+      height: calc(1.4em + 10px);
+      background: #464C55;
+      margin-right: 5px;
+      &__checked {
+        background: #373C43;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+

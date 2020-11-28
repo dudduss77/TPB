@@ -1,0 +1,18 @@
+[
+  {
+    "sortName": "Sortowanie po dacie rosnąco",
+    "sortType": "date-up"
+  },
+  {
+    "sortName": "Sortowanie po dacie malejąco",
+    "sortType": "date-down"
+  },
+  {
+    "sortName": "Sortowanie po nazwie rosnąco",
+    "sortType": "name-up"
+  },
+  {
+    "sortName": "Sortowanie po nazwie malejąco",
+    "sortType": "name-down"
+  }
+]

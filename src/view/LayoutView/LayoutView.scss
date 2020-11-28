@@ -15,6 +15,7 @@
 
   &__nav {
     grid-area: nav;
+    z-index: 1;
   }
 
   &__content {
