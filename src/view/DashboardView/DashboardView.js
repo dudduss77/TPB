@@ -110,6 +110,7 @@ const DashboardView = () => {
                 eget nisl eu lacus pulvinar semper eget in libero."
                 goalActualValue={0}
                 goalEndValue={100}
+                goalEdit={false}
                 goalHistory={false}
               />
             </div>
