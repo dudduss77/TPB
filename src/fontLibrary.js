@@ -20,7 +20,8 @@ import {
   faCalendar,
   faAngleRight,
   faAngleLeft,
-  faHistory
+  faHistory,
+  faChartBar
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -44,5 +45,6 @@ library.add(
   faCalendar,
   faAngleRight,
   faAngleLeft,
-  faHistory
+  faHistory,
+  faChartBar
 );

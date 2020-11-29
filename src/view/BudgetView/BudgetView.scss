@@ -1,0 +1,126 @@
+.budgetView {
+  width: calc(100vw - 250px);
+  height: 100%;
+  background: #343b45;
+  &__wrapper {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 0.7fr 0.7fr 1fr;
+    grid-template-rows: 2.5fr repeat(2, 1fr);
+    grid-template-areas: 'chart chart history'
+    'sumExpense saveMoney history'
+    'yourBudget spendMoney history';
+    gap: 20px;
+    &__chart {
+      grid-area: chart;
+    }
+    &__history{
+      grid-area: history;
+    }
+    &__sumExpense{
+      grid-area: sumExpense;
+    }
+    &__saveMoney{
+      grid-area: saveMoney;
+    }
+    &__yourBudget{
+      grid-area: yourBudget;
+    }
+    &__spendMoney{
+      grid-area: spendMoney;
+    }
+  }
+}
+
+.itemsWrapper {
+  width: 100%;
+  height: calc(100% - 45px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &__filter {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    &__header {
+      width: 100%;
+      font-size: 1.2em;
+      display: flex;
+      position: relative;
+      &__title {
+        flex: 1 1 auto;
+        text-align: center;
+      }
+      &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0 1 auto;
+        position: absolute;
+        top: 0;
+        right: 20px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    &__inputs {
+      width: 80%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+  }
+  &__items {
+    flex: 1 1 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .budgetView {
+    width: 100vw;
+  }
+}
+
+@media screen and (min-width: 1230px) {
+  .budgetView {
+    &__subMenu {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .budgetView {
+    &__wrapper {
+      width: 300vw;
+      height: calc(100% - 75px);
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      grid-template-areas:
+        "chart sumExpense history"
+        "chart saveMoney history"
+        "chart yourBudget history"
+        "chart spendMoney history";
+      padding: 0;
+      gap: 0;
+    }
+    &__subMenu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #262b33;
+      width: 100vw;
+      height: 75px;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
