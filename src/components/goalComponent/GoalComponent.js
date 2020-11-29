@@ -10,16 +10,19 @@ const GoalComponent = (props) => {
   return (
     <div className="goalComponent">
       <div className="goalComponent__header">
-        {props.goalHistory && (
+        {props.goalEdit && (
           <div className="goalComponent__header__icon">
             <FontAwesomeIcon icon="pen" />
           </div>
         )}
 
         <div className="goalComponent__header__title">{props.goalTitle}</div>
-        <div className="goalComponent__header__icon">
-          <FontAwesomeIcon icon="edit" />
-        </div>
+        {!props.goalHistory && (
+          <div className="goalComponent__header__icon">
+            <FontAwesomeIcon icon="edit" />
+          </div>
+        )}
+        
         <div className="goalComponent__header__icon">
           <FontAwesomeIcon icon="trash-alt" />
         </div>

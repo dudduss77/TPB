@@ -1,6 +1,7 @@
 import DashBoardView from './view/DashboardView/DashboardView'
 import PlansAndTasksView from './view/PlansAndTasksView/PlansAndTasksView'
 import BudgetView from './view/BudgetView/BudgetView'
+import GoalView from './view/GoalView/GoalView'
 
 export const routes = [
   {
@@ -14,5 +15,9 @@ export const routes = [
   {
     path: "/budget",
     component: BudgetView
+  },
+  {
+    path: "/goals",
+    component: GoalView
   }
 ]
