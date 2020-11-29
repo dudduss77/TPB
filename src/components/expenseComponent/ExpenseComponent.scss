@@ -1,0 +1,34 @@
+.expenseComponent {
+  width: 100%;
+  border-bottom: 1px solid #262b33;
+  font-size: 1.2em;
+  padding: 10px 0;
+  display: flex;
+  &__id {
+    margin-left: 20px;
+    flex: 0 1 auto;
+  }
+  &__date {
+    margin-left: 10px;
+    flex: 0 1 auto;
+  }
+  &__name {
+    margin-left: 10px;
+    flex: 1 1 auto;
+  }
+  &__price {
+    margin-left: 10px;
+    flex: 0 1 auto;
+  }
+  &__icon {
+    margin-left: 10px;
+    flex: 0 1 auto;
+    &:last-child {
+      margin-right: 20px;
+    }
+    &:hover {
+      cursor: pointer;
+      color: #aaa;
+    }
+  }
+}
