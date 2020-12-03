@@ -4,7 +4,6 @@ import "./PlansAndTasksView.scss";
 import "../../globalStyle/wrappers.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { useWindowSize } from "../../customHook/useWindowSize";
 
 import ReusableContainerComponent from "../../components/reusableContainerComponent/ReusableContainerComponent";
@@ -12,14 +11,6 @@ import HeaderComponent from "../../components/headerComponent/HeaderComponent";
 import ReusableSettingsComponent from "../../components/reusableSettingsComponent/ReusableSettingsComponent";
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
 import TaskComponent from "../../components/taskComponent/TaskComponent";
-
-import InputComponent from "../../components/inputComponent/InputComponent";
-import LabelComponent from "../../components/labelComponent/LabelComponent";
-import CheckboxComponent from "../../components/checkboxComponent/CheckboxComponent";
-import SelectComponent from "../../components/selectComponent/SelectComponent";
-
-import sortTypeTask from "../../data/sortTypeTask.json";
-
 import TasksActiveFilter from "../../components/tasksActiveFilter/TasksActiveFilter";
 import TasksHistoryFilter from "../../components/taskHistoryFilter/TaskHistoryFilter";
 
