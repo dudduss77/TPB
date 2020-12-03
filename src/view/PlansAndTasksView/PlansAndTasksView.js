@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "./PlansAndTasksView.scss";
+import '../../globalStyle/wrappers.scss';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -19,10 +20,14 @@ import SelectComponent from "../../components/selectComponent/SelectComponent";
 
 import sortTypeTask from "../../data/sortTypeTask.json";
 
+
+import TasksActiveFilter from '../../components/tasksActiveFilter/TasksActiveFilter'
+
 const PlansAndTasksView = () => {
-  const [searchValue, setSearchValue] = useState("");
-  const [selectValue, setSelectValue] = useState("");
-  const [checkboxValue, setCheckboxValue] = useState(false);
+  //Tasks active container var
+  const [searchActiveValue, setSearchActiveValue] = useState("");
+  const [selectActiveValue, setSelectActiveValue] = useState("");
+  const [checkboxPriorityValue, setCheckboxPriorityValue] = useState(false);
 
   const [dateStartValue, setDateStartValue] = useState();
   const [dateEndValue, setDateEndValue] = useState();
@@ -77,45 +82,12 @@ const PlansAndTasksView = () => {
                 headerTitle="Aktywne zadania"
                 settingsComponent={<ReusableSettingsComponent />}
               />
-
-              <div className="itemsWrapper">
-                <div className="itemsWrapper__filter">
-                  <div className="itemsWrapper__filter__header">
-                    <div className="itemsWrapper__filter__header__title">
-                      Filtry
-                    </div>
-                    <FontAwesomeIcon
-                      onClick={() => setShowFilterActive(!showFilterActive)}
-                      className="itemsWrapper__filter__header__icon"
-                      icon={showFilterActive ? "angle-up" : "angle-down"}
-                    />
-                  </div>
-                  {showFilterActive && (
-                    <>
-                      <div className="itemsWrapper__filter__inputs">
-                        <LabelComponent labelTitle="Szukaj" labelFor="search" />
-                        <InputComponent
-                          onValueChange={(val) => setSearchValue(val)}
-                          inputType="text"
-                          inputName="search"
-                          inputPlaceholder="Szukaj"
-                        />
-                        <CheckboxComponent
-                          checkboxName="priority"
-                          checkboxTitle="Piorytet"
-                          onValueChange={() => setCheckboxValue(!checkboxValue)}
-                        />
-                      </div>
-                      <div className="itemsWrapper__filter__inputs">
-                        <SelectComponent
-                          optionsData={sortTypeTask}
-                          onValueChange={(val) => setSelectValue(val)}
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="itemsWrapper__items">
+              <TasksActiveFilter 
+                setSearch={setSearchActiveValue}
+                setPriority={() => setCheckboxPriorityValue(!checkboxPriorityValue)}
+                setSelect={setSelectActiveValue}
+              />
+              <div className="itemsWrapperTwo">
                   <TaskComponent
                     id="1"
                     taskCheck={true}
@@ -129,7 +101,6 @@ const PlansAndTasksView = () => {
                     taskStatus={false}
                   />
                 </div>
-              </div>
             </ReusableContainerComponent>
           </div>
           <div className="plansAndTasksView__wrapper__tasks__historyTasks">

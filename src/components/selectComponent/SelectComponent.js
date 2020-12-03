@@ -8,6 +8,8 @@ const SelectComponent = (props) => {
   const [showOptions, setShowOptions] = useState(false);
   const [actualValue, setActualValue] = useState(props.optionsData[0].sortName);
 
+  // props.onValueChange(props.optionsData[0].sortType);
+
   const onSelectChange = (val) => {
     props.onValueChange(val.target.getAttribute("value"));
   };
