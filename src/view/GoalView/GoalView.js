@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./GoalView.scss";
 import "../../globalStyle/wrappers.scss";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowSize } from "../../customHook/useWindowSize";
 
 import ReusableContainerComponent from "../../components/reusableContainerComponent/ReusableContainerComponent";
 import HeaderComponent from "../../components/headerComponent/HeaderComponent";
@@ -13,14 +13,6 @@ import GoalComponent from "../../components/goalComponent/GoalComponent";
 import GoalActiveFilter from "../../components/goalActiveFilter/GoalActiveFilter";
 import GoalHistoryFilter from "../../components/goalHistoryFilter/GoalHistoryFilter";
 
-import InputComponent from "../../components/inputComponent/InputComponent";
-import LabelComponent from "../../components/labelComponent/LabelComponent";
-import CheckboxComponent from "../../components/checkboxComponent/CheckboxComponent";
-import SelectComponent from "../../components/selectComponent/SelectComponent";
-
-import sortTypeTask from "../../data/sortTypeTask.json";
-
-import { useWindowSize } from "../../customHook/useWindowSize";
 
 const GoalView = () => {
   const [selectValueActive, setSelectValueActive] = useState("");
