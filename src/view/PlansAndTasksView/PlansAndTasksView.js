@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "./PlansAndTasksView.scss";
-import '../../globalStyle/wrappers.scss';
+import "../../globalStyle/wrappers.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -20,23 +20,22 @@ import SelectComponent from "../../components/selectComponent/SelectComponent";
 
 import sortTypeTask from "../../data/sortTypeTask.json";
 
-
-import TasksActiveFilter from '../../components/tasksActiveFilter/TasksActiveFilter'
+import TasksActiveFilter from "../../components/tasksActiveFilter/TasksActiveFilter";
+import TasksHistoryFilter from "../../components/taskHistoryFilter/TaskHistoryFilter";
 
 const PlansAndTasksView = () => {
-  //Tasks active container var
+  //Var for active tasks
   const [searchActiveValue, setSearchActiveValue] = useState("");
   const [selectActiveValue, setSelectActiveValue] = useState("");
   const [checkboxPriorityValue, setCheckboxPriorityValue] = useState(false);
 
+  //Var for history tasks
   const [dateStartValue, setDateStartValue] = useState();
   const [dateEndValue, setDateEndValue] = useState();
   const [selectHistoryValue, setSelectHistoryValue] = useState("");
-  const [checkboxHistoryValue, setCheckboxHistoryValue] = useState(false);
+  const [checkboxNotDoneValue, setCheckboxNotDoneValue] = useState(false);
 
-  const [showFilterActive, setShowFilterActive] = useState(false);
-  const [showFilterHistory, setShowFilterHistory] = useState(false);
-
+  //Transform wrapper
   const [transformValue, setTransformValue] = useState(0);
   const size = useWindowSize();
 
@@ -82,91 +81,51 @@ const PlansAndTasksView = () => {
                 headerTitle="Aktywne zadania"
                 settingsComponent={<ReusableSettingsComponent />}
               />
-              <TasksActiveFilter 
+              <TasksActiveFilter
                 setSearch={setSearchActiveValue}
-                setPriority={() => setCheckboxPriorityValue(!checkboxPriorityValue)}
+                setPriority={() =>
+                  setCheckboxPriorityValue(!checkboxPriorityValue)
+                }
                 setSelect={setSelectActiveValue}
               />
               <div className="itemsWrapperTwo">
-                  <TaskComponent
-                    id="1"
-                    taskCheck={true}
-                    taskTitle={"test"}
-                    taskDate="14.11.2020"
-                    taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                <TaskComponent
+                  id="1"
+                  taskCheck={true}
+                  taskTitle={"test"}
+                  taskDate="14.11.2020"
+                  taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                     euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
                     bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
                     eget nisl eu lacus pulvinar semper eget in libero."
-                    taskEdit={true}
-                    taskStatus={false}
-                  />
-                </div>
+                  taskEdit={true}
+                  taskStatus={false}
+                />
+              </div>
             </ReusableContainerComponent>
           </div>
           <div className="plansAndTasksView__wrapper__tasks__historyTasks">
             <ReusableContainerComponent>
               <HeaderComponent headerTitle="Historia" />
-
-              <div className="itemsWrapper">
-                <div className="itemsWrapper__filter">
-                  <div className="itemsWrapper__filter__header">
-                    <div className="itemsWrapper__filter__header__title">
-                      Filtry
-                    </div>
-                    <FontAwesomeIcon
-                      onClick={() => setShowFilterHistory(!showFilterHistory)}
-                      className="itemsWrapper__filter__header__icon"
-                      icon={showFilterHistory ? "angle-up" : "angle-down"}
-                    />
-                  </div>
-                  {showFilterHistory && (
-                    <>
-                      <div className="itemsWrapper__filter__inputs">
-                        <LabelComponent labelTitle="Od" labelFor="dateStart" />
-                        <InputComponent
-                          onValueChange={(val) => setDateStartValue(val)}
-                          inputType="date"
-                          inputName="dateStart"
-                          inputPlaceholder="Od daty"
-                        />
-                        <LabelComponent labelTitle="Do" labelFor="dateEnd" />
-                        <InputComponent
-                          onValueChange={(val) => setDateEndValue(val)}
-                          inputType="date"
-                          inputName="dateEnd"
-                          inputPlaceholder="Do daty"
-                        />
-                        <CheckboxComponent
-                          checkboxName="notDone"
-                          checkboxTitle="Niewykonane"
-                          onValueChange={() =>
-                            setCheckboxHistoryValue(!checkboxHistoryValue)
-                          }
-                        />
-                      </div>
-                      <div className="itemsWrapper__filter__inputs">
-                        <SelectComponent
-                          optionsData={sortTypeTask}
-                          onValueChange={(val) => setSelectHistoryValue(val)}
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="itemsWrapper__items">
-                  <TaskComponent
-                    id="1"
-                    taskCheck={false}
-                    taskTitle={"test"}
-                    taskDate="14.11.2020"
-                    taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+              <TasksHistoryFilter 
+                setStartDate={setDateStartValue}
+                setEndDate={setDateEndValue}
+                setNotDone={() => setCheckboxNotDoneValue(!checkboxNotDoneValue)}
+                setSelect={setSelectHistoryValue}
+              />
+              <div className="itemsWrapperTwo">
+                <TaskComponent
+                  id="1"
+                  taskCheck={false}
+                  taskTitle={"test"}
+                  taskDate="14.11.2020"
+                  taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                     euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
                     bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
                     eget nisl eu lacus pulvinar semper eget in libero."
-                    taskEdit={false}
-                    taskStatus={false}
-                  />
-                </div>
+                  taskEdit={false}
+                  taskStatus={false}
+                />
               </div>
             </ReusableContainerComponent>
           </div>
