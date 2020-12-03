@@ -1,0 +1,86 @@
+.userSettingsView {
+  width: calc(100vw - 250px);
+  height: 100%;
+  background: #343b45;
+  &__wrapper {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+
+    &__left {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__mid {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__right {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .userSettingsView {
+    width: 100vw;
+  }
+}
+
+@media screen and (min-width: 1230px) {
+  .userSettingsView {
+    &__subMenu {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .userSettingsView {
+    &__wrapper {
+      width: 300vw;
+      height: calc(100% - 75px);
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 0;
+      gap: 0;
+      
+      &__left, &__mid, &__right {
+        gap: 0;
+      }
+    }
+    &__subMenu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #262b33;
+      width: 100vw;
+      height: 75px;
+      bottom: 0;
+      left: 0;
+      &__element {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

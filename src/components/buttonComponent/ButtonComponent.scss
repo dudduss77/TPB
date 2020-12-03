@@ -1,0 +1,12 @@
+.buttonComponent {
+  width: 250px;
+  padding: 10px 0;
+  text-align: center;
+  background: #262B33;
+  border: none;
+  color: #ddd;
+  font-size: 1.1em;
+  &:hover {
+    cursor: pointer;
+  }
+}
