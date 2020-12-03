@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './GoalView.scss'
+import "../../globalStyle/wrappers.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -9,6 +10,7 @@ import ValueComponent from "../../components/valueComponent/ValueComponent";
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
 
 import GoalComponent from "../../components/goalComponent/GoalComponent";
+import GoalActiveFilter from '../../components/goalActiveFilter/GoalActiveFilter'
 
 import InputComponent from "../../components/inputComponent/InputComponent";
 import LabelComponent from "../../components/labelComponent/LabelComponent";
@@ -22,7 +24,6 @@ import { useWindowSize } from "../../customHook/useWindowSize";
 
 
 const GoalView = () => {
-  const [showFilterActive, setShowFilteAvtive] = useState(false);
   const [selectValueActive, setSelectValueActive] = useState("");
   const [searchValueActive, setSearchValueActive] = useState("");
 
@@ -51,8 +52,11 @@ const GoalView = () => {
         <div className="goalView__wrapper__active">
           <ReusableContainerComponent>
             <HeaderComponent headerTitle="Aktywne cele"/>
-            <div className="itemsWrapper">
-              <div className="itemsWrapper__filter">
+            <GoalActiveFilter 
+              setSearch={setSelectValueActive}
+              setSelect={setSearchValueActive}
+            />
+              {/* <div className="itemsWrapper__filter">
                 <div className="itemsWrapper__filter__header">
                   <div className="itemsWrapper__filter__header__title">
                     Filtry
@@ -82,8 +86,8 @@ const GoalView = () => {
                       </div>
                     </>
                   )}
-              </div>
-                <div className="itemsWrapper__items">
+              </div> */}
+                <div className="itemsWrapperTwo">
                   <GoalComponent
                     goalTitle="Kupić samochód"
                     goalDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
@@ -96,7 +100,6 @@ const GoalView = () => {
                     goalHistory={false}
                   />
                 </div>
-            </div>
           </ReusableContainerComponent>
         </div>
         <div className="goalView__wrapper__history">
