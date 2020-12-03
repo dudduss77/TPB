@@ -1,0 +1,29 @@
+.goalHistoryFilter {
+  width: calc(100% - 40px);
+  padding: 10px 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.2em;
+  border-bottom: 1px solid #262b33;
+  &__header {
+    width: 100%;
+    display: flex;
+
+    &__title {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+
+    &__icon {
+      cursor: pointer;
+    }
+  }
+
+  &__inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

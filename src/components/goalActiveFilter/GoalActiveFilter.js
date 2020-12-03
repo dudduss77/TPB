@@ -27,16 +27,29 @@ const GoalActiveFilter = (props) => {
           icon={showFilter ? "angle-up" : "angle-down"}
         />
       </div>
-      <div className="goalActiveFilter__inputs">
-        <label className="labelStyle" htmlFor="search">Szukaj</label>
-        <input onChange={getSearchValue} className="inputStyle" id="search" type="text" placeholder="Szukaj"/>
-      </div>
-      <div className="goalActiveFilter__inputs">
-        <SelectComponent
-          optionsData={sortTypeTask}
-          onValueChange={(val) => props.setSelect(val)}
-        />
-      </div>
+
+      {showFilter && (
+        <>
+          <div className="goalActiveFilter__inputs">
+            <label className="labelStyle" htmlFor="search">
+              Szukaj
+            </label>
+            <input
+              onChange={getSearchValue}
+              className="inputStyle"
+              id="search"
+              type="text"
+              placeholder="Szukaj"
+            />
+          </div>
+          <div className="goalActiveFilter__inputs">
+            <SelectComponent
+              optionsData={sortTypeTask}
+              onValueChange={(val) => props.setSelect(val)}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
