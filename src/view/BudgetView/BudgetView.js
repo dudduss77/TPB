@@ -12,7 +12,7 @@ import ExpenseComponent from "../../components/expenseComponent/ExpenseComponent
 import SaveMoneyComponent from "../../components/saveMoneyComponent/SaveMoneyComponent";
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
 import BudgetFilter from "../../components/budgetFilter/BudgetFilter";
-
+import BudgetChartFilter from '../../components/budgetChartFilter/BudgetChartFilter'
 
 const BudgetView = () => {
 
@@ -20,6 +20,8 @@ const BudgetView = () => {
   const [dateStartValue, setDateStartValue] = useState();
   const [dateEndValue, setDateEndValue] = useState();
   const [checkboxSaveMoneyValue, setCheckboxSaveMoneyValue] = useState(false);
+  const [chartTime, setChartTime] = useState("");
+  const [chartType, setChartType] = useState("");
 
   const [transformValue, setTransformValue] = useState(0);
   const size = useWindowSize();
@@ -43,6 +45,15 @@ const BudgetView = () => {
         <div className="budgetView__wrapper__chart">
           <ReusableContainerComponent>
             <HeaderComponent headerTitle="Wykres" />
+            <div className="chartWrapper">
+              <div className="chartWrapper__chart"></div>
+              <div className="chartWrapper__filter">
+                <BudgetChartFilter
+                  setChartTime={setChartTime}
+                  setChartType={setChartType}
+                />
+              </div>
+            </div>
           </ReusableContainerComponent>
         </div>
         <div className="budgetView__wrapper__history">

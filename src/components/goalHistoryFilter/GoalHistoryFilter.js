@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./GoalHistoryFilter.scss";
 
 import "../../globalStyle/forms.scss";
@@ -12,6 +12,11 @@ import sortTypeTask from "../../data/sortTypeTask.json";
 
 const GoalHistoryFilter = (props) => {
   const [showFilter, setShowFilter] = useState(false);
+
+  useEffect(() => {
+    props.setSelect(sortTypeTask[0].sortType)
+  }, [])
+
   return (
     <div className="goalHistoryFilter">
       <div className="goalHistoryFilter__header">
@@ -22,7 +27,8 @@ const GoalHistoryFilter = (props) => {
           icon={showFilter ? "angle-up" : "angle-down"}
         />
       </div>
-
+      {showFilter && (
+        <>
       <div className="goalHistoryFilter__inputs">
         <CheckboxComponent
           checkboxName="unrealized"
@@ -36,6 +42,8 @@ const GoalHistoryFilter = (props) => {
           onValueChange={(val) => props.setSelect(val)}
         />
       </div>
+      </>
+      )}
     </div>
   );
 };

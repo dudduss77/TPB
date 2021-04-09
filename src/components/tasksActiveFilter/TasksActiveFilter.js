@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TasksActiveFilter.scss";
 import "../../globalStyle/forms.scss";
 
@@ -16,6 +16,10 @@ const TasksActiveFilter = (props) => {
     event.preventDefault();
     props.setSearch(event.target.value);
   }
+
+  useEffect(() => {
+    props.setSelect(sortTypeTask[0].sortType)
+  }, [])
 
   return (
     <div className="tasksActiveFilter">

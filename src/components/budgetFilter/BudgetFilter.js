@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BudgetFilter.scss";
 import "../../globalStyle/forms.scss";
 
@@ -21,6 +21,10 @@ const BudgetFilter = (props) => {
     event.preventDefault();
     props.setEndDate(event.target.value);
   };
+
+  useEffect(() => {
+    props.setSelect(sortTypeTask[0].sortType)
+  }, [])
 
   return (
     <div className="budgetFilter">

@@ -1,0 +1,36 @@
+.budgetChartFilter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 0;
+  &__header {
+    font-size: 1.2em;
+  }
+  &__wrapper {
+    width: 100%;
+  }
+  &__wrapperInputs {
+    width: 100%;
+    &__headerSmall {
+      text-align: center;
+    }
+    &__inputs {
+      width: 90%;
+      display: flex;
+      gap: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .budgetChartFilter {
+    border-top: 1px solid #262B33;
+    &__wrapper {
+      width: 90%;
+      display: flex;
+      margin: 0 10px;
+    }
+  }
+}
