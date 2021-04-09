@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./SelectComponent.scss";
 
@@ -8,9 +8,12 @@ const SelectComponent = (props) => {
   const [showOptions, setShowOptions] = useState(false);
   const [actualValue, setActualValue] = useState(props.optionsData[0].sortName);
 
+  // props.onValueChange(props.optionsData[0].sortType);
+
   const onSelectChange = (val) => {
     props.onValueChange(val.target.getAttribute("value"));
   };
+
   return (
     <div className="selectComponent">
       <div className="selectComponent__wrapper">

@@ -60,52 +60,53 @@
 
 .itemsWrapper {
   width: 100%;
-  height: calc(100% - 45px);
+  // height: calc(100% - 45px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
 
-  &__filter {
-    flex: 0 1 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0;
-    &__header {
-      width: 100%;
-      font-size: 1.2em;
-      display: flex;
-      position: relative;
-      &__title {
-        flex: 1 1 auto;
-        text-align: center;
-      }
-      &__icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 0 1 auto;
-        position: absolute;
-        top: 0;
-        right: 20px;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-    &__inputs {
-      width: 70%;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-  }
-  &__items {
-    flex: 1 1 auto;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
+  // &__filter {
+  //   flex: 0 1 auto;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   margin: 10px 0;
+  //   &__header {
+  //     width: 100%;
+  //     font-size: 1.2em;
+  //     display: flex;
+  //     position: relative;
+  //     &__title {
+  //       flex: 1 1 auto;
+  //       text-align: center;
+  //     }
+  //     &__icon {
+  //       display: flex;
+  //       justify-content: center;
+  //       align-items: center;
+  //       flex: 0 1 auto;
+  //       position: absolute;
+  //       top: 0;
+  //       right: 20px;
+  //       &:hover {
+  //         cursor: pointer;
+  //       }
+  //     }
+  //   }
+  //   &__inputs {
+  //     width: 70%;
+  //     display: flex;
+  //     align-items: center;
+  //     gap: 10px;
+  //     margin-top: 10px;
+  //   }
+  // }
+  // &__items {
+  //   flex: 1 1 auto;
+  //   overflow-x: hidden;
+  //   overflow-y: auto;
+  // }
 }
 
 @media screen and (max-width: 1680px) {
@@ -160,16 +161,6 @@
       height: 75px;
       bottom: 0;
       left: 0;
-    }
-  }
-
-  .itemsWrapper {
-    &__filter {
-      &__inputs {
-        width: 90%;
-        flex-direction: column;
-        align-items: flex-start;
-      }
     }
   }
 }

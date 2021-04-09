@@ -108,8 +108,8 @@ const DashboardView = () => {
                 euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
                 bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
                 eget nisl eu lacus pulvinar semper eget in libero."
-                goalActualValue={0}
-                goalEndValue={100}
+                goalActualValue={2000}
+                goalEndValue={3000}
                 goalEdit={false}
                 goalHistory={false}
               />
