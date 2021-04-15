@@ -1,6 +1,6 @@
 .dashboardView {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 75px);
   background: #343b45;
   display: flex;
   flex-direction: column;

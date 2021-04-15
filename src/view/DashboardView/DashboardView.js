@@ -12,7 +12,10 @@ import ValueComponent from "../../components/valueComponent/ValueComponent";
 import TaskComponent from "../../components/taskComponent/TaskComponent";
 import GoalComponent from "../../components/goalComponent/GoalComponent";
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
+import TasksWrapper from '../../components/tasksWrapper/TasksWrapper'
 
+//Data
+import tempTaskData from '../../data/tempTaskData.json'
 
 const DashboardView = () => {
   const taskContext = useContext(TaskContext);
@@ -45,40 +48,12 @@ const DashboardView = () => {
         </div>
 
         <div className="dashboardView__wrapper__task">
-          <ReusableContainerComponent>
-            <HeaderComponent
-              headerTitle="Zadania na dziś"
-              settingsComponent={<ReusableSettingsComponent />}
-            />
-            <div className="itemsWrapper">
-              {/* <TaskComponent
-                taskCheck={true}
-                taskTitle="Testowe Zadanie"
-                taskDate="14.11.2020"
-                taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
-                bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
-                eget nisl eu lacus pulvinar semper eget in libero."
-                taskEdit={true}
-                taskStatus={false}
-              /> */}
-              {taskContext.tasksData.map(task => {
-                return <TaskComponent
-                key={task.id}
-                id={task.id}
-                taskCheck={true}
-                taskTitle={task.taskTitle}
-                taskDate="14.11.2020"
-                taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
-                bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
-                eget nisl eu lacus pulvinar semper eget in libero."
-                taskEdit={true}
-                taskStatus={false}
-              />
-              })}
-            </div>
-          </ReusableContainerComponent>
+          <TasksWrapper
+            header="Zadania na dziś"
+            check={true}
+            edit={true}
+            data={tempTaskData}
+          />
         </div>
 
         <div className="dashboardView__wrapper__budgetOne">

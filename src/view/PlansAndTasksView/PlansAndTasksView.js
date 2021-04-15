@@ -14,6 +14,11 @@ import TaskComponent from "../../components/taskComponent/TaskComponent";
 import TasksActiveFilter from "../../components/tasksActiveFilter/TasksActiveFilter";
 import TasksHistoryFilter from "../../components/taskHistoryFilter/TaskHistoryFilter";
 
+import TasksWrapper from '../../components/tasksWrapper/TasksWrapper'
+
+
+import tempTaskData from '../../data/tempTaskData.json'
+
 const PlansAndTasksView = () => {
   //Var for active tasks
   const [searchActiveValue, setSearchActiveValue] = useState("");
@@ -67,58 +72,39 @@ const PlansAndTasksView = () => {
             <FontAwesomeIcon icon="angle-left" />
           </div>
           <div className="plansAndTasksView__wrapper__tasks__activeTasks">
-            <ReusableContainerComponent>
-              <HeaderComponent
-                headerTitle="Aktywne zadania"
-                settingsComponent={<ReusableSettingsComponent />}
-              />
-              <TasksActiveFilter
-                setSearch={setSearchActiveValue}
-                setPriority={() =>
-                  setCheckboxPriorityValue(!checkboxPriorityValue)
-                }
-                setSelect={setSelectActiveValue}
-              />
-              <div className="itemsWrapperTwo">
-                <TaskComponent
-                  id="1"
-                  taskCheck={true}
-                  taskTitle={"test"}
-                  taskDate="14.11.2020"
-                  taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                    euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
-                    bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
-                    eget nisl eu lacus pulvinar semper eget in libero."
-                  taskEdit={true}
-                  taskStatus={false}
+            <TasksWrapper
+              header="Aktywne zadania"
+              filter={
+                <TasksActiveFilter
+                  setSearch={setSearchActiveValue}
+                  setPriority={() =>
+                    setCheckboxPriorityValue(!checkboxPriorityValue)
+                  }
+                  setSelect={setSelectActiveValue}
                 />
-              </div>
-            </ReusableContainerComponent>
+              }
+              check={true}
+              edit={true}
+              data={tempTaskData}
+            />
           </div>
           <div className="plansAndTasksView__wrapper__tasks__historyTasks">
-            <ReusableContainerComponent>
-              <HeaderComponent headerTitle="Historia" />
-              <TasksHistoryFilter 
-                setStartDate={setDateStartValue}
-                setEndDate={setDateEndValue}
-                setNotDone={() => setCheckboxNotDoneValue(!checkboxNotDoneValue)}
-                setSelect={setSelectHistoryValue}
-              />
-              <div className="itemsWrapperTwo">
-                <TaskComponent
-                  id="1"
-                  taskCheck={false}
-                  taskTitle={"test"}
-                  taskDate="14.11.2020"
-                  taskDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                    euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
-                    bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
-                    eget nisl eu lacus pulvinar semper eget in libero."
-                  taskEdit={false}
-                  taskStatus={false}
+            <TasksWrapper
+              header="Historia zadań"
+              filter={
+                <TasksHistoryFilter
+                  setStartDate={setDateStartValue}
+                  setEndDate={setDateEndValue}
+                  setNotDone={() =>
+                    setCheckboxNotDoneValue(!checkboxNotDoneValue)
+                  }
+                  setSelect={setSelectHistoryValue}
                 />
-              </div>
-            </ReusableContainerComponent>
+              }
+              check={false}
+              edit={false}
+              data={tempTaskData}
+            />
           </div>
         </div>
       </div>
