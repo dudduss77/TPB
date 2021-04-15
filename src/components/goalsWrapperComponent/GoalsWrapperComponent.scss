@@ -1,0 +1,13 @@
+.goalsWrapperComponent {
+  width: 100%;
+  height: 100%;
+  background: #2C323A;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &__goals {
+    flex: 1;
+    overflow-y: auto;
+  }
+}

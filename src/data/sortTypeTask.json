@@ -1,18 +1,18 @@
 [
   {
-    "sortName": "Sortowanie po dacie rosnąco",
-    "sortType": "date-up"
+    "selectHeader": "Sortowanie po dacie rosnąco",
+    "selectValue": "date-up"
   },
   {
-    "sortName": "Sortowanie po dacie malejąco",
-    "sortType": "date-down"
+    "selectHeader": "Sortowanie po dacie malejąco",
+    "selectValue": "date-down"
   },
   {
-    "sortName": "Sortowanie po nazwie rosnąco",
-    "sortType": "name-up"
+    "selectHeader": "Sortowanie po nazwie rosnąco",
+    "selectValue": "name-up"
   },
   {
-    "sortName": "Sortowanie po nazwie malejąco",
-    "sortType": "name-down"
+    "selectHeader": "Sortowanie po nazwie malejąco",
+    "selectValue": "name-down"
   }
 ]

@@ -1,0 +1,50 @@
+.inputComponent {
+  width: 100%;
+  display: flex;
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--vertical {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &--small {
+    width: 250px;
+  }
+
+  &--vertical &__label {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+  }
+
+  &--horizontal &__label {
+    margin-right: 5px;
+    font-size: 1.1em;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 1.2em;
+    font-family: "Lato", sans-serif;
+    padding: 5px 0;
+    margin: 0;
+    border: none;
+    background: #464c55;
+    color: #ddd;
+    text-align: center;
+    &--error {
+      border: 1px solid #d00;
+      width: calc(100% - 2px);
+      padding: 4px 0;
+    }
+    &--succes {
+      border: 1px solid #059b00;
+      width: calc(100% - 2px);
+      padding: 4px 0;
+    }
+  }
+
+  
+}

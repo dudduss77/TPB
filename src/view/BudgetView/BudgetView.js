@@ -14,15 +14,11 @@ import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent
 import BudgetFilter from "../../components/budgetFilter/BudgetFilter";
 import BudgetChartFilter from '../../components/budgetChartFilter/BudgetChartFilter'
 
+import SmallBlock from '../../components/smallBlock/SmallBlock';
+import BudgetHistoryComponent from '../../components/budgetHistoryComponent/BudgetHistoryComponent';
+import BudgetChartComponent from '../../components/budgetChartComponent/BudgetChartComponent';
+
 const BudgetView = () => {
-
-  const [selectValue, setSelectValue] = useState("");
-  const [dateStartValue, setDateStartValue] = useState();
-  const [dateEndValue, setDateEndValue] = useState();
-  const [checkboxSaveMoneyValue, setCheckboxSaveMoneyValue] = useState(false);
-  const [chartTime, setChartTime] = useState("");
-  const [chartType, setChartType] = useState("");
-
   const [transformValue, setTransformValue] = useState(0);
   const size = useWindowSize();
 
@@ -43,74 +39,28 @@ const BudgetView = () => {
     <div className="budgetView">
       <div className="budgetView__wrapper" style={trasnformSettings}>
         <div className="budgetView__wrapper__chart">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Wykres" />
-            <div className="chartWrapper">
-              <div className="chartWrapper__chart"></div>
-              <div className="chartWrapper__filter">
-                <BudgetChartFilter
-                  setChartTime={setChartTime}
-                  setChartType={setChartType}
-                />
-              </div>
-            </div>
-          </ReusableContainerComponent>
+          <BudgetChartComponent
+            header="Wykres"
+          />
         </div>
         <div className="budgetView__wrapper__history">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Historia" />
-            <BudgetFilter 
-              setStartDate={setDateStartValue}
-              setEndDate={setDateEndValue}
-              setSaveMoney={() => setCheckboxSaveMoneyValue(!checkboxSaveMoneyValue)}
-              setSelect={setSelectValue}
-            />
-
-            <div className="itemsWrapperTwo">
-              <ExpenseComponent
-                expenseId="1"
-                expenseDate="20.12.2020"
-                expenseName="Ziemniaki"
-                expenseValue="20"
-              />
-              <SaveMoneyComponent
-                saveMoneyId="1"
-                saveMoneyDate="20.12.2020"
-                saveMoneyValue="200"
-                saveMoneyUserEnd={true}
-              />
-            </div>
-          </ReusableContainerComponent>
+          <BudgetHistoryComponent />
         </div>
         <div className="budgetView__wrapper__sumExpense">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Suma wydatków" />
-            <ValueComponent moneyValue="1000" />
-          </ReusableContainerComponent>
+          <SmallBlock header="Suma wydatków" value="1000" currency={true} />
         </div>
         <div className="budgetView__wrapper__saveMoney">
-          <ReusableContainerComponent>
-            <HeaderComponent
-              headerTitle="Oszczędności"
-              settingsComponent={<ReusableSettingsComponent />}
-            />
-            <ValueComponent moneyValue="1000" />
-          </ReusableContainerComponent>
+          <SmallBlock header="Oszczędności" value="1000" currency={true} />
         </div>
         <div className="budgetView__wrapper__yourBudget">
-          <ReusableContainerComponent>
-            <HeaderComponent
-              headerTitle="Budżet"
-              settingsComponent={<ReusableSettingsComponent />}
-            />
-            <ValueComponent moneyValue="1000" />
-          </ReusableContainerComponent>
+          <SmallBlock header="Budżet" value="1000" currency={true} />
         </div>
         <div className="budgetView__wrapper__spendMoney">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Wydane w tym miesiącu" />
-            <ValueComponent moneyValue="1000" />
-          </ReusableContainerComponent>
+          <SmallBlock
+            header="Wydane w tym miesiącu"
+            value="1000"
+            currency={true}
+          />
         </div>
       </div>
       <div className="budgetView__subMenu">

@@ -15,6 +15,7 @@ import {ACTIONS} from '../../reducers/taskReducer'
 //Components
 import TopComponent from "../../components/topComponent/TopComponent";
 import NavComponent from "../../components/navComponent/NavComponent";
+import AddComponent from "../../components/addComponent/AddComponent";
 
 
 const LayoutView = () => {
@@ -31,8 +32,8 @@ const LayoutView = () => {
       <div className="layoutView__top">
         <TopComponent
           onNotificationClick={() => setShowNotification(true)}
-          // onAddClick={() => setShowAdd(true)}
-          onAddClick={() => taskContext.tasksDispatch({type: ACTIONS.ADDTASK, payload: {taskTitle: 'Test'}})}
+          onAddClick={() => setShowAdd(true)}
+          // onAddClick={() => taskContext.tasksDispatch({type: ACTIONS.ADDTASK, payload: {taskTitle: 'Test'}})}
           onHamburgerClick={() => setShowMenu(!showMenu)}
         />
       </div>
@@ -74,6 +75,15 @@ const LayoutView = () => {
           </Switch>
         </div>
       </Router>
+      {showAdd && (
+        <>
+        <AddComponent
+          setShowAdd={() => setShowAdd(false)}
+        />
+        </>
+      )}
+      
+
     </div>
   );
 };

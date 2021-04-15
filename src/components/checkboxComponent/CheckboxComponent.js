@@ -5,7 +5,7 @@ import "./CheckboxComponent.scss";
 const CheckboxComponent = (props) => {
   const [isChecked, setIsChecked] = useState(false);
   return (
-    <div className="checkboxComponent">
+    <div className={`checkboxComponent checkboxComponent--${props.size}`}>
       <div
         className={`checkboxComponent__checkbox ${
           isChecked ? "checkboxComponent__checkbox__checked" : ""
