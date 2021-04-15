@@ -3,7 +3,7 @@ import './ButtonComponent.scss'
 
 const ButtonComponent = (props) => {
   return (
-    <button onClick={props.buttonClick} className="buttonComponent">
+    <button onClick={props.buttonClick} className={`buttonComponent buttonComponent--${props.size}`}>
       {props.buttonName}
     </button>
   )
