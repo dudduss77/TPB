@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./NotifySettingsComponent.scss";
 
+import HeaderComponent from "../headerComponent/HeaderComponent";
 import CheckboxComponent from "../checkboxComponent/CheckboxComponent";
 import ButtonComponent from "../buttonComponent/ButtonComponent";
 
@@ -11,33 +12,34 @@ const NotifySettingsComponent = () => {
 
   const submitNotifySettings = () => {
     //API
-  }
+  };
 
   return (
     <div className="notifySettingsComponent">
-      <CheckboxComponent
-        checkboxName="taskNotify"
-        checkboxTitle="Powiadomienia o zadaniach"
-        onValueChange={() =>
-          setTaskNotify(!taskNotify)
-        }
-      />
-      <CheckboxComponent
-        checkboxName="payNotify"
-        checkboxTitle="Powiadomienia o płatnościach"
-        onValueChange={() =>
-          setPayNotify(!payNotify)
-        }
-      />
-      <CheckboxComponent
-        checkboxName="goalNotify"
-        checkboxTitle="Powiadomienia o celach"
-        onValueChange={() =>
-          setGoalNotify(!goalNotify)
-        }
-      />
+      <HeaderComponent headerTitle="Powiadomienia" />
+      <div className="notifySettingsComponent__wrapper">
+        <CheckboxComponent
+          checkboxName="taskNotify"
+          checkboxTitle="Powiadomienia o zadaniach"
+          onValueChange={() => setTaskNotify(!taskNotify)}
+        />
+        <CheckboxComponent
+          checkboxName="payNotify"
+          checkboxTitle="Powiadomienia o płatnościach"
+          onValueChange={() => setPayNotify(!payNotify)}
+        />
+        <CheckboxComponent
+          checkboxName="goalNotify"
+          checkboxTitle="Powiadomienia o celach"
+          onValueChange={() => setGoalNotify(!goalNotify)}
+        />
+      </div>
+
       <div className="notifySettingsComponent__button">
-        <ButtonComponent buttonClick={submitNotifySettings} buttonName="Zmień" />
+        <ButtonComponent
+          buttonClick={submitNotifySettings}
+          buttonName="Zmień"
+        />
       </div>
     </div>
   );

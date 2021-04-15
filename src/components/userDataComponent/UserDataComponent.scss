@@ -1,18 +1,24 @@
 .userDataComponent {
-  width: 90%;
-  padding: 20px 0;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  background: #2C323A;
 
-  &__block {
-    display: flex;
-
-    &__header {
-      margin-right: 5px;
-    }
-    &__value {
-      color: #aaa;
+  &__wrapper {
+    width: 95%;
+    align-self: center;
+    padding: 11px 0;
+    &__block {
+      display: flex;
+      padding: 2px 0;
+      &__header {
+        margin-right: 5px;
+      }
+      &__value {
+        color: #aaa;
+      }
     }
   }
+
+  
 }

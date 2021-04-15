@@ -3,73 +3,63 @@ import React, { useState } from "react";
 import "./ChangePasswordComponent.scss";
 import "../../globalStyle/forms.scss";
 
-import {passwordValidator} from '../../validators/passwordValidator'
+import { passwordValidator } from "../../validators/passwordValidator";
 
 import ButtonComponent from "../buttonComponent/ButtonComponent";
+
+import HeaderComponent from "../headerComponent/HeaderComponent";
+import InputComponent from "../inputComponent/InputComponent";
 
 const ChangePasswordComponent = () => {
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
-  const [errMsg, setErrMsg] = useState("")
-  const [isValidate, setIsValidate] = useState(false)
-
-  const getOldPass = (event) => {
-    event.preventDefault();
-    setOldPass(event.target.value);
-  };
-
-  const getNewPass = (event) => {
-    event.preventDefault();
-    setNewPass(event.target.value);
-  };
-
-  const getRepeatPass = (event) => {
-    event.preventDefault();
-    setRepeatPass(event.target.value);
-  };
+  const [errMsg, setErrMsg] = useState("");
+  const [isValidate, setIsValidate] = useState(false);
 
   const submitForm = () => {
-    if(isValidate) {
+    if (isValidate) {
       console.log("działa");
     }
-  }
+  };
 
   return (
-    <div onChange={(e) => {passwordValidator(e, setErrMsg, setIsValidate)}} className="changePasswordComponent">
-      <div className="changePasswordComponent__errorMsg">{errMsg}</div>
-      <label htmlFor="oldPassword" className="labelStyle">
-        Stare hasło
-      </label>
-      <input
-        onChange={getOldPass}
-        name="oldPassword"
-        className="inputStyle"
-        type="password"
-        placeholder="Stare hasło"
-      />
-      <label htmlFor="newPassword" className="labelStyle">
-        Nowe hasło
-      </label>
-      <input
-        onChange={getNewPass}
-        name="newPassword"
-        className="inputStyle"
-        type="password"
-        placeholder="Nowe hasło"
-      />
-      <label htmlFor="repeatPassword" className="labelStyle">
-        Powtórz hasło
-      </label>
-      <input
-        onChange={getRepeatPass}
-        name="repeatPassword"
-        className="inputStyle"
-        type="password"
-        placeholder="Powtórz hasło"
-      />
+    <div className="changePasswordComponent">
+      <HeaderComponent headerTitle="Zmiana hasła" />
+      <div className="changePasswordComponent__wrapper">
+        <div className="changePasswordComponent__wrapper__errorMsg">
+          {errMsg}
+        </div>
 
-      <ButtonComponent buttonClick={submitForm} buttonName="Zmień" />
+        <InputComponent
+          orientation="vertical"
+          labelFor="oldPassword"
+          label="Stare hasło"
+          type="text"
+          placeholder="Stare hasło"
+          getValue={setOldPass}
+        />
+
+        <InputComponent
+          orientation="vertical"
+          labelFor="newPassword"
+          label="Nowe hasło"
+          type="text"
+          placeholder="Nowe hasło"
+          getValue={setNewPass}
+        />
+
+        <InputComponent
+          orientation="vertical"
+          labelFor="repeatPassword"
+          label="Powtórz hasło"
+          type="text"
+          placeholder="Powtórz hasło"
+          getValue={setRepeatPass}
+        />
+
+        <ButtonComponent buttonClick={submitForm} buttonName="Zmień" />
+      </div>
     </div>
   );
 };
