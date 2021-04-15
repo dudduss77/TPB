@@ -12,7 +12,9 @@ import ValueComponent from "../../components/valueComponent/ValueComponent";
 import TaskComponent from "../../components/taskComponent/TaskComponent";
 import GoalComponent from "../../components/goalComponent/GoalComponent";
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
+
 import TasksWrapper from '../../components/tasksWrapper/TasksWrapper'
+import SmallBlock from '../../components/smallBlock/SmallBlock'
 
 //Data
 import tempTaskData from '../../data/tempTaskData.json'
@@ -57,20 +59,11 @@ const DashboardView = () => {
         </div>
 
         <div className="dashboardView__wrapper__budgetOne">
-          <ReusableContainerComponent>
-            <HeaderComponent
-              headerTitle="Twój budżet"
-              settingsComponent={<ReusableSettingsComponent />}
-            />
-            <ValueComponent moneyValue="123" />
-          </ReusableContainerComponent>
+          <SmallBlock header="Twój budżet" value="123" currency={true} />
         </div>
 
         <div className="dashboardView__wrapper__budgetTwo">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Dzisiaj wydałeś" />
-            <ValueComponent moneyValue="999999.99" />
-          </ReusableContainerComponent>
+          <SmallBlock header="Dzisiaj wydałeś" value="123.45" currency={true} />
         </div>
 
         <div className="dashboardView__wrapper__goals">
