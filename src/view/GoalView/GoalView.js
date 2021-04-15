@@ -4,14 +4,13 @@ import "../../globalStyle/wrappers.scss";
 
 import { useWindowSize } from "../../customHook/useWindowSize";
 
-import ReusableContainerComponent from "../../components/reusableContainerComponent/ReusableContainerComponent";
-import HeaderComponent from "../../components/headerComponent/HeaderComponent";
-import ValueComponent from "../../components/valueComponent/ValueComponent";
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
 
-import GoalComponent from "../../components/goalComponent/GoalComponent";
 import GoalActiveFilter from "../../components/goalActiveFilter/GoalActiveFilter";
 import GoalHistoryFilter from "../../components/goalHistoryFilter/GoalHistoryFilter";
+
+import SmallBlock from '../../components/smallBlock/SmallBlock'
+import GoalsWrapperComponent from '../../components/goalsWrapperComponent/GoalsWrapperComponent'
 
 
 const GoalView = () => {
@@ -40,66 +39,45 @@ const GoalView = () => {
     <div className="goalView">
       <div className="goalView__wrapper" style={trasnformSettings}>
         <div className="goalView__wrapper__active">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Aktywne cele" />
-            <GoalActiveFilter
-              setSearch={setSelectValueActive}
-              setSelect={setSearchValueActive}
-            />
-            <div className="itemsWrapperTwo">
-              <GoalComponent
-                goalTitle="Kupić samochód"
-                goalDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                    euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
-                    bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
-                    eget nisl eu lacus pulvinar semper eget in libero."
-                goalActualValue={0}
-                goalEndValue={100}
-                goalEdit={true}
-                goalHistory={false}
+          <GoalsWrapperComponent
+            header="Aktywne cele"
+            filter={
+              <GoalActiveFilter
+                setSearch={setSelectValueActive}
+                setSelect={setSearchValueActive}
               />
-            </div>
-          </ReusableContainerComponent>
+            }
+            edit={true}
+            history={false}
+          />
         </div>
         <div className="goalView__wrapper__history">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Historia celi" />
-            <GoalHistoryFilter 
-              setUnrealized={() => setUnrealizedCheckboxValue(!unrealizedCheckboxValue)}
-              setSelect={setSelectValueHistory}
-            />
-            <div className="itemsWrapperTwo">
-              <GoalComponent
-                goalTitle="Kupić samochód"
-                goalDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                    euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
-                    bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
-                    eget nisl eu lacus pulvinar semper eget in libero."
-                goalActualValue={0}
-                goalEndValue={100}
-                goalEdit={false}
-                goalHistory={true}
+          <GoalsWrapperComponent
+            header="Historia"
+            filter={
+              <GoalHistoryFilter
+                setUnrealized={() =>
+                  setUnrealizedCheckboxValue(!unrealizedCheckboxValue)
+                }
+                setSelect={setSelectValueHistory}
               />
-            </div>
-          </ReusableContainerComponent>
+            }
+            edit={false}
+            history={true}
+          />
         </div>
         <div className="goalView__wrapper__allGoals">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Wszystkich celi" />
-            <ValueComponent moneyValue="3" />
-          </ReusableContainerComponent>
+          <SmallBlock header="Wszystkich celi" value="3" />
         </div>
         <div className="goalView__wrapper__completGoal">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Ilość zrealizowanych" />
-            <ValueComponent moneyValue="3" />
-          </ReusableContainerComponent>
+          <SmallBlock header="Ilość zrealizowanych" value="3" />
         </div>
         <div className="goalView__wrapper__moneyGoal">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Ile przeznaczono na cele" />
-            <ValueComponent moneyValue="3" />
-          </ReusableContainerComponent>
+          <SmallBlock
+            header="Ile przeznaczono na cele"
+            value="3"
+            currency={true}
+          />
         </div>
       </div>
       <div className="goalView__subMenu">
