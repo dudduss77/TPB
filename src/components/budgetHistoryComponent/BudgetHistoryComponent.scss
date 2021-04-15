@@ -1,0 +1,12 @@
+.budgetHistoryComponent {
+  width: 100%;
+  height: 100%;
+  background: #2C323A;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  &__expenses {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
