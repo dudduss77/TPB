@@ -15,6 +15,7 @@ import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent
 
 import TasksWrapper from '../../components/tasksWrapper/TasksWrapper'
 import SmallBlock from '../../components/smallBlock/SmallBlock'
+import GoalsWrapperComponent from '../../components/goalsWrapperComponent/GoalsWrapperComponent'
 
 //Data
 import tempTaskData from '../../data/tempTaskData.json'
@@ -67,22 +68,11 @@ const DashboardView = () => {
         </div>
 
         <div className="dashboardView__wrapper__goals">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Cele" />
-            <div className="itemsWrapper">
-              <GoalComponent
-                goalTitle="Kupić samochód"
-                goalDesc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                euismod facilisis neque, quis finibus ipsum imperdiet a. Sed
-                bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus
-                eget nisl eu lacus pulvinar semper eget in libero."
-                goalActualValue={2000}
-                goalEndValue={3000}
-                goalEdit={false}
-                goalHistory={false}
-              />
-            </div>
-          </ReusableContainerComponent>
+          <GoalsWrapperComponent
+            header="Cele"
+            edit={false}
+            history={false}
+          />
         </div>
       </div>
       <div className="dashboardView__subMenu">
