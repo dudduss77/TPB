@@ -9,4 +9,13 @@
   &:hover {
     cursor: pointer;
   }
+
+  &--small {
+    width: 250px;
+  }
+
+  &--auto {
+    width: 100%;
+    height: 100%;
+  }
 }

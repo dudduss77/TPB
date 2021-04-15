@@ -6,16 +6,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SelectComponent = (props) => {
   const [showOptions, setShowOptions] = useState(false);
-  const [actualValue, setActualValue] = useState(props.optionsData[0].sortName);
+  const [actualValue, setActualValue] = useState(props.optionsData[0].selectHeader);
 
-  // props.onValueChange(props.optionsData[0].sortType);
+  // props.onValueChange(props.optionsData[0].selectValue);
 
   const onSelectChange = (val) => {
     props.onValueChange(val.target.getAttribute("value"));
   };
 
   return (
-    <div className="selectComponent">
+    <div className={`selectComponent selectComponent--${props.size}`}>
       <div className="selectComponent__wrapper">
         <div className="selectComponent__wrapper__actual">{actualValue}</div>
         <div
@@ -30,8 +30,8 @@ const SelectComponent = (props) => {
           {props.optionsData.map((option) => {
             return (
               <div
-                key={option.sortType}
-                value={option.sortType}
+                key={option.selectValue}
+                value={option.selectValue}
                 onClick={(e) => {
                   setActualValue(e.target.innerHTML);
                   setShowOptions(!showOptions);
@@ -39,7 +39,7 @@ const SelectComponent = (props) => {
                 }}
                 className="selectComponent__optionWrapper__option"
               >
-                {option.sortName}
+                {option.selectHeader}
               </div>
             );
           })}

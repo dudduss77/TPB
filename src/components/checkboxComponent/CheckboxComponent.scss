@@ -1,5 +1,10 @@
 .checkboxComponent {
   // width: 100%;
+
+  &--small {
+    width: 250px;
+  }
+
   &__input {
     position: absolute;
     visibility: hidden;
