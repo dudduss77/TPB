@@ -15,12 +15,10 @@ import BudgetFilter from "../../components/budgetFilter/BudgetFilter";
 import BudgetChartFilter from '../../components/budgetChartFilter/BudgetChartFilter'
 
 import SmallBlock from '../../components/smallBlock/SmallBlock';
-import BudgetHistoryComponent from '../../components/budgetHistoryComponent/BudgetHistoryComponent'
+import BudgetHistoryComponent from '../../components/budgetHistoryComponent/BudgetHistoryComponent';
+import BudgetChartComponent from '../../components/budgetChartComponent/BudgetChartComponent';
 
 const BudgetView = () => {
-  const [chartTime, setChartTime] = useState("");
-  const [chartType, setChartType] = useState("");
-
   const [transformValue, setTransformValue] = useState(0);
   const size = useWindowSize();
 
@@ -41,18 +39,9 @@ const BudgetView = () => {
     <div className="budgetView">
       <div className="budgetView__wrapper" style={trasnformSettings}>
         <div className="budgetView__wrapper__chart">
-          <ReusableContainerComponent>
-            <HeaderComponent headerTitle="Wykres" />
-            <div className="chartWrapper">
-              <div className="chartWrapper__chart"></div>
-              <div className="chartWrapper__filter">
-                <BudgetChartFilter
-                  setChartTime={setChartTime}
-                  setChartType={setChartType}
-                />
-              </div>
-            </div>
-          </ReusableContainerComponent>
+          <BudgetChartComponent
+            header="Wykres"
+          />
         </div>
         <div className="budgetView__wrapper__history">
           <BudgetHistoryComponent />
