@@ -1,0 +1,14 @@
+.categoryComponent {
+  width: 100%;
+  display: flex;
+  font-size: 1.1em;
+  padding: 5px 0;
+  border-bottom: 1px solid #262b33;
+  &__title {
+    flex: 1;
+    margin-left: 10px;
+  }
+  &__icon {
+    margin-right: 10px;
+  }
+}

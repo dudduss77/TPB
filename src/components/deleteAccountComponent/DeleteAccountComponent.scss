@@ -1,14 +1,11 @@
 .deleteAccountComponent {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  margin: 0 auto;
-  padding: 20px 0;
+  background: #2c323a;
+  align-items: center;
   gap: 10px;
-  &__button {
-    align-self: center;
-  }
+  padding-bottom: 20px;
   &__errorMsg {
     color: #d00;
     font-size: 1.1em;

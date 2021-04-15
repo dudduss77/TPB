@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from "react";
 import "./UserSettingsView.scss";
 
-import ReusableContainerComponent from "../../components/reusableContainerComponent/ReusableContainerComponent";
-import HeaderComponent from "../../components/headerComponent/HeaderComponent";
-
 import ChangePasswordComponent from "../../components/changePasswordComponent/ChangePasswordComponent";
 import ChangeEmailComponent from "../../components/changeEmailComponent/ChangeEmailComponent";
 import NotifySettingsComponent from "../../components/notifySettingsComponent/NotifySettingsComponent";
 import DeleteAccountComponent from "../../components/deleteAccountComponent/DeleteAccountComponent";
 import UserDataComponent from "../../components/userDataComponent/UserDataComponent";
+import CategorySettingsComponent from '../../components/categorySettingsComponent/CategorySettingsComponent'
+import BudgetSettings from '../../components/budgetSettings/BudgetSettings'
 
 import { useWindowSize } from "../../customHook/useWindowSize";
 
@@ -33,32 +32,17 @@ const UserSettingsView = () => {
     <div className="userSettingsView">
       <div className="userSettingsView__wrapper" style={trasnformSettings}>
         <div className="userSettingsView__wrapper__left">
-          <ReusableContainerComponent isHeightAuto={true}>
-            <HeaderComponent headerTitle="Dane Użytkownika" />
-            <UserDataComponent />
-          </ReusableContainerComponent>
-
-          <ReusableContainerComponent isHeightAuto={true}>
-            <HeaderComponent headerTitle="Powiadomienia" />
-            <NotifySettingsComponent />
-          </ReusableContainerComponent>
+          <UserDataComponent />
+          <NotifySettingsComponent />
+          <BudgetSettings/>
         </div>
         <div className="userSettingsView__wrapper__mid">
-          <ReusableContainerComponent isHeightAuto={true}>
-            <HeaderComponent headerTitle="Zmień email" />
-            <ChangeEmailComponent />
-          </ReusableContainerComponent>
+          <ChangeEmailComponent />
+          <CategorySettingsComponent/>
         </div>
         <div className="userSettingsView__wrapper__right">
-          <ReusableContainerComponent isHeightAuto={true}>
-            <HeaderComponent headerTitle="Zmień hasło" />
-            <ChangePasswordComponent />
-          </ReusableContainerComponent>
-
-          <ReusableContainerComponent isHeightAuto={true}>
-            <HeaderComponent headerTitle="Usuń konto" />
-            <DeleteAccountComponent />
-          </ReusableContainerComponent>
+          <ChangePasswordComponent />
+          <DeleteAccountComponent />
         </div>
       </div>
       <div className="userSettingsView__subMenu">
