@@ -16,6 +16,7 @@ import {ACTIONS} from '../../reducers/taskReducer'
 import TopComponent from "../../components/topComponent/TopComponent";
 import NavComponent from "../../components/navComponent/NavComponent";
 import AddComponent from "../../components/addComponent/AddComponent";
+import RaportView from '../RaportView/RaportView'
 
 
 const LayoutView = () => {
@@ -83,6 +84,7 @@ const LayoutView = () => {
         </>
       )}
       
+        <RaportView/>
 
     </div>
   );

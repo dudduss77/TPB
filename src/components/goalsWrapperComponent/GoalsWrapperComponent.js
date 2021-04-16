@@ -19,8 +19,9 @@ const GoalsWrapperComponent = (props) => {
                     eget nisl eu lacus pulvinar semper eget in libero."
           goalActualValue={0}
           goalEndValue={100}
+          goalEditValue={props.editValue}
           goalEdit={props.edit}
-          goalHistory={props.history}
+          goalTrash={props.trash}
         />
       </div>
     </div>
