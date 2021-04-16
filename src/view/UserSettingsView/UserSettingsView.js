@@ -8,6 +8,7 @@ import DeleteAccountComponent from "../../components/deleteAccountComponent/Dele
 import UserDataComponent from "../../components/userDataComponent/UserDataComponent";
 import CategorySettingsComponent from '../../components/categorySettingsComponent/CategorySettingsComponent'
 import BudgetSettings from '../../components/budgetSettings/BudgetSettings'
+import SaveMoneySettings from '../../components/saveMoneySettings/SaveMoneySettings'
 
 import { useWindowSize } from "../../customHook/useWindowSize";
 
@@ -42,6 +43,7 @@ const UserSettingsView = () => {
         </div>
         <div className="userSettingsView__wrapper__right">
           <ChangePasswordComponent />
+          <SaveMoneySettings />
           <DeleteAccountComponent />
         </div>
       </div>
