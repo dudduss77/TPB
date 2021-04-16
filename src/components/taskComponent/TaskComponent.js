@@ -25,11 +25,6 @@ const TaskComponent = (props) => {
             <FontAwesomeIcon icon="times" />
           </div>
         )}
-        {props.taskReplay && (
-          <div className="taskComponent__header__icon">
-            <FontAwesomeIcon icon="reply" />
-          </div>
-        )}
         <div className="taskComponent__header__title">{props.taskTitle}</div>
         <div className="taskComponent__header__date">{props.taskDate}</div>
 

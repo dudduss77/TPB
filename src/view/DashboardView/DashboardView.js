@@ -55,6 +55,7 @@ const DashboardView = () => {
             header="Zadania na dziś"
             check={true}
             edit={true}
+            trash={true}
             data={tempTaskData}
           />
         </div>
@@ -70,8 +71,9 @@ const DashboardView = () => {
         <div className="dashboardView__wrapper__goals">
           <GoalsWrapperComponent
             header="Cele"
-            edit={false}
-            history={false}
+            editValue={true}
+            edit={true}
+            trash={true}
           />
         </div>
       </div>

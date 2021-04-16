@@ -85,6 +85,7 @@ const PlansAndTasksView = () => {
               }
               check={true}
               edit={true}
+              trash={true}
               data={tempTaskData}
             />
           </div>
@@ -103,6 +104,7 @@ const PlansAndTasksView = () => {
               }
               check={false}
               edit={false}
+              trash={true}
               data={tempTaskData}
             />
           </div>

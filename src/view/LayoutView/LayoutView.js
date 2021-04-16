@@ -84,7 +84,7 @@ const LayoutView = () => {
         </>
       )}
       
-        <RaportView/>
+        {/* <RaportView/> */}
 
     </div>
   );
