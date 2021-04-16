@@ -31,6 +31,7 @@ const LayoutView = () => {
   document.documentElement.style.setProperty('--vh', `${size.height *0.01}px`)
   return (
     <div className="layoutView">
+    <Router>
       <div className="layoutView__top">
         <TopComponent
           onNotificationClick={() => setShowNotification(true)}
@@ -39,7 +40,7 @@ const LayoutView = () => {
           onHamburgerClick={() => setShowMenu(!showMenu)}
         />
       </div>
-      <Router>
+      
         <div className="layoutView__nav">
           <NavComponent />
         </div>

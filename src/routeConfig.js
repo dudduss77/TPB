@@ -3,6 +3,7 @@ import PlansAndTasksView from './view/PlansAndTasksView/PlansAndTasksView'
 import BudgetView from './view/BudgetView/BudgetView'
 import GoalView from './view/GoalView/GoalView'
 import UserSettingsView from './view/UserSettingsView/UserSettingsView'
+import AppSettingsView from './view/AppSettingsView/AppSettingsView'
 
 export const routes = [
   {
@@ -24,5 +25,9 @@ export const routes = [
   {
     path: "/user",
     component: UserSettingsView
+  },
+  {
+    path: "/appsettings",
+    component: AppSettingsView
   }
 ]

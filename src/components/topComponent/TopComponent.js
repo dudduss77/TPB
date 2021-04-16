@@ -5,6 +5,7 @@ import LogoComponent from '../logoComponent/LogoComponent'
 import NotificationIconComponent from '../notificationIconComponent/NotificationIconComponent'
 import AddIconComponent from '../addIconComponent/AddIconComponent'
 import HamburgerIconComponent from '../hamburgerIconComponent/HamburgerIconComponent'
+import AppSettingsIcon from '../appSettingsIcon/AppSettingsIcon'
 
 const TopComponent = (props) => {
   return (
@@ -12,6 +13,9 @@ const TopComponent = (props) => {
 
       <div className="topComponent__logo">
         <LogoComponent/>
+      </div>
+      <div className="topComponent__settings">
+        <AppSettingsIcon onSettingsClick={props.onSettingsClick}/>
       </div>
       <div className="topComponent__notification">
         <NotificationIconComponent onNotificationClick={props.onNotificationClick} />

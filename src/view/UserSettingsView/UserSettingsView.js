@@ -3,12 +3,8 @@ import "./UserSettingsView.scss";
 
 import ChangePasswordComponent from "../../components/changePasswordComponent/ChangePasswordComponent";
 import ChangeEmailComponent from "../../components/changeEmailComponent/ChangeEmailComponent";
-import NotifySettingsComponent from "../../components/notifySettingsComponent/NotifySettingsComponent";
 import DeleteAccountComponent from "../../components/deleteAccountComponent/DeleteAccountComponent";
 import UserDataComponent from "../../components/userDataComponent/UserDataComponent";
-import CategorySettingsComponent from '../../components/categorySettingsComponent/CategorySettingsComponent'
-import BudgetSettings from '../../components/budgetSettings/BudgetSettings'
-import SaveMoneySettings from '../../components/saveMoneySettings/SaveMoneySettings'
 
 import { useWindowSize } from "../../customHook/useWindowSize";
 
@@ -34,17 +30,13 @@ const UserSettingsView = () => {
       <div className="userSettingsView__wrapper" style={trasnformSettings}>
         <div className="userSettingsView__wrapper__left">
           <UserDataComponent />
-          <NotifySettingsComponent />
-          <BudgetSettings/>
+          <DeleteAccountComponent />
         </div>
         <div className="userSettingsView__wrapper__mid">
           <ChangeEmailComponent />
-          <CategorySettingsComponent/>
         </div>
         <div className="userSettingsView__wrapper__right">
           <ChangePasswordComponent />
-          <SaveMoneySettings />
-          <DeleteAccountComponent />
         </div>
       </div>
       <div className="userSettingsView__subMenu">

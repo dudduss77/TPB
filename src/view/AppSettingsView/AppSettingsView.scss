@@ -1,0 +1,70 @@
+.appSettingsView {
+  width: 100%;
+  height: calc(100vh - 75px);
+  background: #343b45;
+  display: flex;
+  flex-direction: column;
+  &__wrapper {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    &__items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .appSettingsView {
+    width: 100vw;
+  }
+}
+
+@media screen and (min-width: 1230px) {
+  .appSettingsView {
+    &__subMenu {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .appSettingsView {
+    &__wrapper {
+      width: 300vw;
+      height: calc(100% - 75px);
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 0;
+      gap: 0;
+      
+      &__left, &__mid, &__right {
+        gap: 0;
+      }
+    }
+    &__subMenu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #262b33;
+      width: 100vw;
+      height: 75px;
+      bottom: 0;
+      left: 0;
+      &__element {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
