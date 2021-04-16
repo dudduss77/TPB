@@ -1,0 +1,46 @@
+.raportView {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: rgba(11, 11, 11, 0.7);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__header {
+    padding: 15px 0;
+  }
+
+  &__wrapper {
+    width: 70%;
+    height: 80%;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 0.7fr 0.6fr 0.7fr;
+    grid-template-rows: 0.5fr 0.5fr 1fr 75px;
+    grid-template-areas: 'task expense goal'
+    'task saveMoney goal'
+    'task chart chart'
+    'button chart chart';
+
+    &__task {
+      grid-area: task;
+    }
+    &__expense {
+      grid-area: expense;
+    }
+    &__goal {
+      grid-area: goal;
+    }
+    &__saveMoney {
+      grid-area: saveMoney;
+    }
+    &__button {
+      grid-area: button;
+    }
+    &__chart {
+      grid-area: chart;
+    }
+  }
+}

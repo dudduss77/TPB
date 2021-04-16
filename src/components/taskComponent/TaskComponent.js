@@ -4,10 +4,10 @@ import "./TaskComponent.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //Context
-import { TaskContext } from '../../App'
+import { TaskContext } from "../../App";
 
 //Actions
-import {ACTIONS} from '../../reducers/taskReducer'
+import { ACTIONS } from "../../reducers/taskReducer";
 
 const TaskComponent = (props) => {
   const [showMore, setShowMore] = useState(false);
@@ -20,7 +20,12 @@ const TaskComponent = (props) => {
             <FontAwesomeIcon icon="check" />
           </div>
         )}
-        {!props.taskCheck && (
+        {props.taskCheck && (
+          <div className="taskComponent__header__icon">
+            <FontAwesomeIcon icon="times" />
+          </div>
+        )}
+        {props.taskReplay && (
           <div className="taskComponent__header__icon">
             <FontAwesomeIcon icon="reply" />
           </div>
@@ -33,13 +38,20 @@ const TaskComponent = (props) => {
             <FontAwesomeIcon icon="edit" />
           </div>
         )}
+        {props.taskTrash && (
+          <div className="taskComponent__header__icon">
+            <FontAwesomeIcon
+              icon="trash-alt"
+              onClick={() =>
+                taskContext.tasksDispatch({
+                  type: ACTIONS.DELTASK,
+                  payload: { id: props.id },
+                })
+              }
+            />
+          </div>
+        )}
 
-        <div className="taskComponent__header__icon">
-          <FontAwesomeIcon
-            icon="trash-alt"
-            onClick={() => taskContext.tasksDispatch({type: ACTIONS.DELTASK, payload: {id: props.id}})}  
-          />
-        </div>
         <div className="taskComponent__header__icon">
           <FontAwesomeIcon
             onClick={() => setShowMore(!showMore)}
