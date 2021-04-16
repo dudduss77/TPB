@@ -17,7 +17,6 @@ const TasksWrapper = (props) => {
             <TaskComponent
               key={task.key}
               taskCheck={props.check}
-              taskReplay={props.replay}
               taskEdit={props.edit}
               taskTrash={props.trash}
               

@@ -47,8 +47,9 @@ const GoalView = () => {
                 setSelect={setSearchValueActive}
               />
             }
+            editValue={true}
             edit={true}
-            history={false}
+            trash={true}
           />
         </div>
         <div className="goalView__wrapper__history">
@@ -62,8 +63,9 @@ const GoalView = () => {
                 setSelect={setSelectValueHistory}
               />
             }
+            editValue={false}
             edit={false}
-            history={true}
+            trash={true}
           />
         </div>
         <div className="goalView__wrapper__allGoals">
