@@ -17,6 +17,7 @@ import TopComponent from "../../components/topComponent/TopComponent";
 import NavComponent from "../../components/navComponent/NavComponent";
 import AddComponent from "../../components/addComponent/AddComponent";
 import RaportView from '../RaportView/RaportView'
+import NotifyComponent from '../../components/notifyComponent/NotifyComponent'
 
 
 const LayoutView = () => {
@@ -83,9 +84,13 @@ const LayoutView = () => {
         />
         </>
       )}
+
+      {showNotification && (
+        <NotifyComponent close={() => setShowNotification(false)}/>
+      )}
       
         {/* <RaportView/> */}
-
+        
     </div>
   );
 };
