@@ -16,6 +16,7 @@ import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent
 import TasksWrapper from '../../components/tasksWrapper/TasksWrapper'
 import SmallBlock from '../../components/smallBlock/SmallBlock'
 import GoalsWrapperComponent from '../../components/goalsWrapperComponent/GoalsWrapperComponent'
+import WeekPlanComponent from '../../components/weekPlanComponent/WeekPlanComponent'
 
 //Data
 import tempTaskData from '../../data/tempTaskData.json'
@@ -42,12 +43,13 @@ const DashboardView = () => {
         style={size.width <= 1230 ? trasnformSettings : null}
       >
         <div className="dashboardView__wrapper__plan">
-          <ReusableContainerComponent>
+          <WeekPlanComponent/>
+          {/* <ReusableContainerComponent>
             <HeaderComponent
               headerTitle="Plan tygodniowy"
               settingsComponent={<ReusableSettingsComponent />}
             />
-          </ReusableContainerComponent>
+          </ReusableContainerComponent> */}
         </div>
 
         <div className="dashboardView__wrapper__task">
