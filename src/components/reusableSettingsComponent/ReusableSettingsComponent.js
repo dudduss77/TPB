@@ -3,9 +3,9 @@ import './ReusableSettingsComponent.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const ReusableSettingsComponent = () => {
+const ReusableSettingsComponent = ({click}) => {
   return (
-    <FontAwesomeIcon className="reusableSettingsComponent" icon="cog"/> 
+    <FontAwesomeIcon onClick={click} className="reusableSettingsComponent" icon="cog"/> 
   )
 }
 

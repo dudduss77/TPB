@@ -7,6 +7,7 @@ import NotifySettingsComponent from "../../components/notifySettingsComponent/No
 import CategorySettingsComponent from "../../components/categorySettingsComponent/CategorySettingsComponent";
 import BudgetSettings from "../../components/budgetSettings/BudgetSettings";
 import SaveMoneySettings from "../../components/saveMoneySettings/SaveMoneySettings";
+import WeekSettingsComponent from '../../components/weekSettingsComponent/WeekSettingsComponent'
 
 const AppSettingsView = () => {
   const [transformValue, setTransformValue] = useState(0);
@@ -30,6 +31,7 @@ const AppSettingsView = () => {
       <div className="appSettingsView__wrapper" style={trasnformSettings}>
         <div className="appSettingsView__wrapper__items">
           <NotifySettingsComponent />
+          <WeekSettingsComponent />
         </div>
         <div className="appSettingsView__wrapper__items">
           <CategorySettingsComponent />

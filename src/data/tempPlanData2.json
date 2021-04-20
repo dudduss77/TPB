@@ -11,9 +11,9 @@
       },
       {
         "id": 2,
-        "name": "Test",
+        "name": "Przerwa",
         "hoursStart": "12:00",
-        "hoursEnd": "12:30",
+        "hoursEnd": "12:15",
         "color": "#555"
       },
       {
