@@ -1,113 +1,21 @@
 .plansAndTasksView {
-  width: calc(100vw - 250px);
-  height: 100%;
+  // width: calc(100vw - 250px);
+  width: 100%;
+  height: calc(100vh - 75px);
   background: #343b45;
   display: flex;
   flex-direction: column;
   &__wrapper {
-    width: 200%;
-    height: 100%;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 'plans tasks';
-    &__plans {
-      grid-area: plans;
-      padding: 20px;
-      display: flex;
-
-      &__monthPlans {
-        width: calc(100% - 75px);
-        height: 100%;
-      }
-      &__rightArrow {
-        width: 75px;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 4em;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-
-    &__tasks {
-      grid-area: tasks;
-      display: grid;
-      grid-template-columns: 75px 1fr 1fr;
-      grid-template-rows: 1fr;
-      gap: 20px;
-      padding: 20px;
-      &__activeTasks {
-        max-height: calc(100vh - 115px);
-      }
-      &__leftArrow {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 4em;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
+    grid-template-columns: minmax(400px, 1fr) minmax(350px, 1fr);
+    grid-template-rows: minmax(400px, 1fr);
+    gap: 20px;
+    padding: 20px;
   }
 }
 
-.itemsWrapper {
-  width: 100%;
-  // height: calc(100% - 45px);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-
-  // &__filter {
-  //   flex: 0 1 auto;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   margin: 10px 0;
-  //   &__header {
-  //     width: 100%;
-  //     font-size: 1.2em;
-  //     display: flex;
-  //     position: relative;
-  //     &__title {
-  //       flex: 1 1 auto;
-  //       text-align: center;
-  //     }
-  //     &__icon {
-  //       display: flex;
-  //       justify-content: center;
-  //       align-items: center;
-  //       flex: 0 1 auto;
-  //       position: absolute;
-  //       top: 0;
-  //       right: 20px;
-  //       &:hover {
-  //         cursor: pointer;
-  //       }
-  //     }
-  //   }
-  //   &__inputs {
-  //     width: 70%;
-  //     display: flex;
-  //     align-items: center;
-  //     gap: 10px;
-  //     margin-top: 10px;
-  //   }
-  // }
-  // &__items {
-  //   flex: 1 1 auto;
-  //   overflow-x: hidden;
-  //   overflow-y: auto;
-  // }
-}
 
 @media screen and (max-width: 1680px) {
   .plansAndTasksView {
