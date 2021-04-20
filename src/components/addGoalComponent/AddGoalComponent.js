@@ -18,7 +18,7 @@ const AddGoalComponent = () => {
     <>
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="goal-title"
         label="Nazwa celu"
         type="text"
@@ -27,14 +27,14 @@ const AddGoalComponent = () => {
       />
 
       <TextareaComponent
-        size="small"
+        size="auto"
         label="Opis celu"
         getValue={setGoalDesc}
       />
 
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="goal-date"
         label="Data zakończenia"
         type="date"
@@ -43,7 +43,7 @@ const AddGoalComponent = () => {
 
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="goal-start"
         label="Zaczynasz od"
         type="text"
@@ -53,7 +53,7 @@ const AddGoalComponent = () => {
 
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="goal-end"
         label="Kończysz na"
         type="text"
@@ -62,7 +62,7 @@ const AddGoalComponent = () => {
       />
 
       <CheckboxComponent
-        size="small"
+        size="auto"
         checkboxName="isRaport"
         checkboxTitle="Uwzględnić w raporcie"
         onValueChange={() => setIsRaport(!isRaport)}
@@ -70,7 +70,7 @@ const AddGoalComponent = () => {
 
       <ButtonComponent
         buttonName="Dodaj"
-        size="small"
+        size="auto"
       />
     </>
   )

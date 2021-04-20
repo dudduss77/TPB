@@ -17,7 +17,7 @@ const AddTaskComponent = () => {
     <>
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="task-title"
         label="Tytuł zadania"
         type="text"
@@ -26,14 +26,14 @@ const AddTaskComponent = () => {
       />
 
       <TextareaComponent
-        size="small"
+        size="auto"
         label="Opis"
         getValue={setTaskDesc}
       />
 
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="task-date"
         label="Data zadania"
         type="date"
@@ -41,14 +41,14 @@ const AddTaskComponent = () => {
       />
 
       <CheckboxComponent
-        size="small"
+        size="auto"
         checkboxName="priority"
         checkboxTitle="Piorytet"
         onValueChange={() => setTaskPriority(!taskPriority)}
       />
 
       <CheckboxComponent
-        size="small"
+        size="auto"
         checkboxName="isInPlan"
         checkboxTitle="Czy uwzględnić w planie"
         onValueChange={() => setTaskIsInPlan(!taskIsInPlan)}
@@ -56,7 +56,7 @@ const AddTaskComponent = () => {
 
       <ButtonComponent
         buttonName="Dodaj"
-        size="small"
+        size="auto"
       />
     </>
   )

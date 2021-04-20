@@ -9,14 +9,14 @@ const AddSaveMoney = () => {
       <>
         <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="expense-title"
         label="Wpłać"
         type="text"
         placeholder="Ile wpłacasz"
         // getValue={setExpenseTitle}
       />
-      <ButtonComponent buttonName="Wpłać"/>
+      <ButtonComponent buttonName="Wpłać" size="auto"/>
       </>
   )
 }

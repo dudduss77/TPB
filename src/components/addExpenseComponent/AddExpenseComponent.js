@@ -46,7 +46,7 @@ const AddExpenseComponent = () => {
     <>
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="expense-title"
         label="Nazwa wydatku"
         type="text"
@@ -56,7 +56,7 @@ const AddExpenseComponent = () => {
 
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="expense-date"
         label="Data wydatku"
         type="date"
@@ -65,7 +65,7 @@ const AddExpenseComponent = () => {
 
       <InputComponent
         orientation="vertical"
-        size="small"
+        size="auto"
         labelFor="expense-cost"
         label="Koszt"
         type="text"
@@ -76,11 +76,11 @@ const AddExpenseComponent = () => {
       <SelectComponent 
         optionsData={TempCategory}
         onValueChange={(val) => setExpenseCategory(val)}
-        size="small"
+        size="auto"
       />
 
       <CheckboxComponent
-        size="small"
+        size="auto"
         checkboxName="isConstant"
         checkboxTitle="Czy wydatek stały"
         onValueChange={() => setIsConstant(!isConstant)}
@@ -90,7 +90,7 @@ const AddExpenseComponent = () => {
         <SelectComponent 
           optionsData={TempConstatnTerm}
           onValueChange={(val) => setConstantTermn(val)}
-          size="small"
+          size="auto"
         />
       )}
 
@@ -99,7 +99,7 @@ const AddExpenseComponent = () => {
 
       <ButtonComponent
         buttonName="Dodaj"
-        size="small"
+        size="auto"
       />
     </>
   )

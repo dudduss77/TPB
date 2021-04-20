@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./DashboardView.scss";
 
 import { useWindowSize } from "../../customHook/useWindowSize";
@@ -12,6 +12,8 @@ import SmallBlock from "../../components/smallBlock/SmallBlock";
 import GoalsWrapperComponent from "../../components/goalsWrapperComponent/GoalsWrapperComponent";
 import WeekPlanComponent from "../../components/weekPlanComponent/WeekPlanComponent";
 
+import DashboardViewMobile from '../DashboardViewMobile/DashboardViewMobile'
+
 //Data
 import tempTaskData from "../../data/tempTaskData.json";
 
@@ -22,66 +24,102 @@ const DashboardView = () => {
 
   console.log(taskContext);
 
-  const [transformValue, setTransformValue] = useState(0);
+  const [mobile, setMobile] = useState(false);
+  const [viewNumber, setViewNumber] = useState(1);
+
   const size = useWindowSize();
 
-  const trasnformSettings = {
-    transform: "translateX(-" + transformValue + "vw)",
-    transitionDuration: "2s",
-  };
+  useEffect(() => {
+    if (size.width <= 1230) {
+      setMobile(true);
+    } else if (size.width > 1230) {
+      setMobile(false);
+    }
+  }, [size.width]);
 
+  const weekPlan = <WeekPlanComponent />;
+
+  const taskWrapper = (
+    <TasksWrapper
+      header="Zadania na dziś"
+      check={true}
+      edit={true}
+      trash={true}
+      data={tempTaskData}
+    />
+  );
+
+  const smallBlock = (
+    <>
+      <SmallBlock header="Twój budżet" value="123" currency={true} />
+      <SmallBlock header="Dzisiaj wydałeś" value="123.45" currency={true} />
+    </>
+  );
+
+  const goalWrapper = (
+    <GoalsWrapperComponent
+      header="Cele"
+      editValue={true}
+      edit={true}
+      trash={true}
+    />
+  );
   return (
     <div className="dashboardView">
-      <div
-        className="dashboardView__wrapper"
-        style={size.width <= 1230 ? trasnformSettings : null}
-      >
-        <div className="dashboardView__wrapper__plan">
-          <WeekPlanComponent />
-        </div>
+      <div className="dashboardView__wrapper">
+        {!mobile && (
+          <>
+            <div className="dashboardView__wrapper__plan">
+              {weekPlan}
+            </div>
 
-        <div className="dashboardView__wrapper__task">
-          <TasksWrapper
-            header="Zadania na dziś"
-            check={true}
-            edit={true}
-            trash={true}
-            data={tempTaskData}
+            <div className="dashboardView__wrapper__task">
+              {taskWrapper}
+            </div>
+
+            <div className="dashboardView__wrapper__budgetOne">
+              <SmallBlock header="Twój budżet" value="123" currency={true} />
+            </div>
+
+            <div className="dashboardView__wrapper__budgetTwo">
+              <SmallBlock
+                header="Dzisiaj wydałeś"
+                value="123.45"
+                currency={true}
+              />
+            </div>
+
+            <div className="dashboardView__wrapper__goals">
+              {goalWrapper}
+            </div>
+          </>
+        )}
+
+        {mobile && (
+          <DashboardViewMobile
+            view={viewNumber}
+            weekPlan={weekPlan}
+            taskWrapper={taskWrapper}
+            smallBlock={smallBlock}
+            goalWrapper={goalWrapper}
           />
-        </div>
-
-        <div className="dashboardView__wrapper__budgetOne">
-          <SmallBlock header="Twój budżet" value="123" currency={true} />
-        </div>
-
-        <div className="dashboardView__wrapper__budgetTwo">
-          <SmallBlock header="Dzisiaj wydałeś" value="123.45" currency={true} />
-        </div>
-
-        <div className="dashboardView__wrapper__goals">
-          <GoalsWrapperComponent
-            header="Cele"
-            editValue={true}
-            edit={true}
-            trash={true}
-          />
-        </div>
+        )}
       </div>
       <div className="dashboardView__subMenu">
         <SubMenuComponent
-          onSubMenuClick={() => setTransformValue(0)}
+          onSubMenuClick={() => setViewNumber(1)}
           subMenuIcon="calendar"
         />
         <SubMenuComponent
-          onSubMenuClick={() => setTransformValue(100)}
+          onSubMenuClick={() => setViewNumber(2)}
           subMenuIcon="tasks"
         />
         <SubMenuComponent
-          onSubMenuClick={() => setTransformValue(200)}
+          onSubMenuClick={() => setViewNumber(3)}
           subMenuIcon="dollar-sign"
         />
         <SubMenuComponent
-          onSubMenuClick={() => setTransformValue(300)}
+          onSubMenuClick={() => setViewNumber(4)}
           subMenuIcon="bullseye"
         />
       </div>

@@ -13,3 +13,9 @@
     gap: 10px;
   }
 }
+
+@media screen and (max-width: 1230px) {
+  .weekSettingsComponent {
+    flex: 1;
+  }
+}

@@ -3,7 +3,7 @@
   height: 100vh;
   position: absolute;
   background: rgba(11, 11, 11, 0.7);
-  z-index: 1;
+  z-index: 2;
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
@@ -14,10 +14,36 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    &__close {
+      display: none;
+    }
     &__items {
       flex: 1;
       overflow-y: auto;
       width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .notifyComponent {
+    &__wrapper {
+      width: 100%;
+      $heightCalc: calc(var(--vh, 1px) * 100);
+      height: $heightCalc;
+
+      &__close {
+        display: flex;
+        position: absolute;
+        top:0;
+        right: 0;
+        height: 45px;
+        width: 45px;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3em;
+        z-index: 3;
+      }
     }
   }
 }

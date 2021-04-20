@@ -14,3 +14,9 @@
     padding: 10px 0 20px 0;
   }
 }
+
+@media screen and (max-width: 1230px) {
+  .budgetSettings {
+    flex: 1;
+  }
+}
