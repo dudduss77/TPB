@@ -6,6 +6,7 @@ import SelectComponent from "../selectComponent/SelectComponent"
 import AddTaskComponent from "../addTaskComponent/AddTaskComponent"
 import AddExpenseComponent from '../addExpenseComponent/AddExpenseComponent'
 import AddGoalComponent from '../addGoalComponent/AddGoalComponent'
+import AddSaveMoney from '../addSaveMoney/AddSaveMoney'
 
 const selectOptions = [
   {
@@ -19,6 +20,10 @@ const selectOptions = [
   {
     selectHeader: "Cel",
     selectValue: "goal"
+  },
+  {
+    selectHeader: "Oszczędzanie",
+    selectValue: "save-money"
   }
 ]
 
@@ -38,6 +43,8 @@ const AddComponent = (props) => {
         return <AddExpenseComponent/>
       case 'goal':
         return <AddGoalComponent/>
+      case 'save-money':
+        return <AddSaveMoney/>
       default: 
       return <p>Coś poszło nie tak</p>
     }
