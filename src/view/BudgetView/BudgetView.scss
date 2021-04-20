@@ -1,7 +1,9 @@
 .budgetView {
   width: calc(100vw - 250px);
-  height: 100%;
+  height: calc(100vh - 75px);
   background: #343b45;
+  display: flex;
+  flex-direction: column;
   &__wrapper {
     width: calc(100% - 40px);
     height: calc(100% - 40px);
@@ -34,19 +36,6 @@
   }
 }
 
-.chartWrapper {
-  width: 100%;
-  flex: 1 1 auto;
-  display: flex;
-  &__chart {
-    flex: 1 1 auto;
-  }
-
-  &__filter {
-    width: 200px;
-  }
-}
-
 @media screen and (max-width: 1680px) {
   .budgetView {
     width: 100vw;
@@ -63,18 +52,16 @@
 
 @media screen and (max-width: 1230px) {
   .budgetView {
+    $heightCalc: calc(var(--vh, 1px) * 100);
+    $temp: calc(#{$heightCalc} - 75px);
+    height: $temp;
     &__wrapper {
-      width: 300vw;
-      height: calc(100% - 75px);
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
-      grid-template-areas:
-        "chart sumExpense history"
-        "chart saveMoney history"
-        "chart yourBudget history"
-        "chart spendMoney history";
+      width: 100vw;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       padding: 0;
-      gap: 0;
+      gap: 0px;
     }
     &__subMenu {
       display: grid;
@@ -84,12 +71,6 @@
       height: 75px;
       bottom: 0;
       left: 0;
-    }
-  }
-  .chartWrapper {
-    flex-direction: column;
-    &__filter {
-      width: 100%;
     }
   }
 }

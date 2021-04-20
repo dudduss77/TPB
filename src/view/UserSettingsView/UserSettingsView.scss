@@ -1,7 +1,9 @@
 .userSettingsView {
   width: calc(100vw - 250px);
-  height: 100%;
+  height: calc(100vh - 75px);
   background: #343b45;
+  display: flex;
+  flex-direction: column;
   &__wrapper {
     width: calc(100% - 40px);
     height: calc(100% - 40px);
@@ -52,16 +54,16 @@
 
 @media screen and (max-width: 1230px) {
   .userSettingsView {
+    $heightCalc: calc(var(--vh, 1px) * 100);
+    $temp: calc(#{$heightCalc} - 75px);
+    height: $temp;
     &__wrapper {
-      width: 300vw;
-      height: calc(100% - 75px);
-      grid-template-columns: 1fr 1fr 1fr;
+      width: 100vw;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       padding: 0;
-      gap: 0;
-      
-      &__left, &__mid, &__right {
-        gap: 0;
-      }
+      gap: 0px;
     }
     &__subMenu {
       display: grid;

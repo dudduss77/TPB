@@ -1,7 +1,7 @@
 import React from "react";
 import "./NotifyComponent.scss";
 
-import HeaderComponent from "../headerComponent/HeaderComponent";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import TasksWrapper from "../tasksWrapper/TasksWrapper";
 import GoalsWrapperComponent from "../goalsWrapperComponent/GoalsWrapperComponent";
@@ -13,7 +13,6 @@ const NotifyComponent = (props) => {
 
   const closeNotify = (event) => {
     event.preventDefault();
-    // console.log(event.target.getAttribute('class'));
     if(event.target.getAttribute('class') === 'notifyComponent') {
       props.close();
     }
@@ -22,6 +21,9 @@ const NotifyComponent = (props) => {
   return (
     <div onClick={closeNotify} className="notifyComponent">
       <div className="notifyComponent__wrapper">
+        <div onClick={() => props.close()} className="notifyComponent__wrapper__close">
+          <FontAwesomeIcon icon="times"/>
+        </div>
         <div className="notifyComponent__wrapper__items">
           <TasksWrapper
             header="Zadania na wykończeniu"
