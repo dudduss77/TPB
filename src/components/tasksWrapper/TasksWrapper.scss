@@ -6,6 +6,6 @@
   display: flex;
   flex-direction: column;
   &__tasks {
-    overflow-x: auto;
+    overflow-y: auto;
   }
 }

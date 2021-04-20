@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SelectComponent = (props) => {
   const [showOptions, setShowOptions] = useState(false);
-  const [actualValue, setActualValue] = useState(props.optionsData[0].selectHeader);
-
-  // props.onValueChange(props.optionsData[0].selectValue);
+  const [actualValue, setActualValue] = useState(
+    props.optionsData[0].selectHeader
+  );
 
   const onSelectChange = (val) => {
     props.onValueChange(val.target.getAttribute("value"));
@@ -16,6 +16,10 @@ const SelectComponent = (props) => {
 
   return (
     <div className={`selectComponent selectComponent--${props.size}`}>
+      {props.label && (
+        <label className="selectComponent__label">{props.label}</label>
+      )}
+
       <div className="selectComponent__wrapper">
         <div className="selectComponent__wrapper__actual">{actualValue}</div>
         <div

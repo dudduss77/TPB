@@ -3,22 +3,17 @@ import "./DashboardView.scss";
 
 import { useWindowSize } from "../../customHook/useWindowSize";
 
-import { TaskContext } from '../../App'
+import { TaskContext } from "../../App";
 
-import ReusableContainerComponent from "../../components/reusableContainerComponent/ReusableContainerComponent";
-import HeaderComponent from "../../components/headerComponent/HeaderComponent";
-import ReusableSettingsComponent from "../../components/reusableSettingsComponent/ReusableSettingsComponent";
-import ValueComponent from "../../components/valueComponent/ValueComponent";
-import TaskComponent from "../../components/taskComponent/TaskComponent";
-import GoalComponent from "../../components/goalComponent/GoalComponent";
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
 
-import TasksWrapper from '../../components/tasksWrapper/TasksWrapper'
-import SmallBlock from '../../components/smallBlock/SmallBlock'
-import GoalsWrapperComponent from '../../components/goalsWrapperComponent/GoalsWrapperComponent'
+import TasksWrapper from "../../components/tasksWrapper/TasksWrapper";
+import SmallBlock from "../../components/smallBlock/SmallBlock";
+import GoalsWrapperComponent from "../../components/goalsWrapperComponent/GoalsWrapperComponent";
+import WeekPlanComponent from "../../components/weekPlanComponent/WeekPlanComponent";
 
 //Data
-import tempTaskData from '../../data/tempTaskData.json'
+import tempTaskData from "../../data/tempTaskData.json";
 
 const DashboardView = () => {
   const taskContext = useContext(TaskContext);
@@ -42,12 +37,7 @@ const DashboardView = () => {
         style={size.width <= 1230 ? trasnformSettings : null}
       >
         <div className="dashboardView__wrapper__plan">
-          <ReusableContainerComponent>
-            <HeaderComponent
-              headerTitle="Plan tygodniowy"
-              settingsComponent={<ReusableSettingsComponent />}
-            />
-          </ReusableContainerComponent>
+          <WeekPlanComponent />
         </div>
 
         <div className="dashboardView__wrapper__task">
