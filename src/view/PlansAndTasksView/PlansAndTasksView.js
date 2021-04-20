@@ -13,6 +13,7 @@ import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent
 import TaskComponent from "../../components/taskComponent/TaskComponent";
 import TasksActiveFilter from "../../components/tasksActiveFilter/TasksActiveFilter";
 import TasksHistoryFilter from "../../components/taskHistoryFilter/TaskHistoryFilter";
+import WeekPlanComponent from '../../components/weekPlanComponent/WeekPlanComponent'
 
 import TasksWrapper from '../../components/tasksWrapper/TasksWrapper'
 
@@ -51,26 +52,42 @@ const PlansAndTasksView = () => {
   return (
     <div className="plansAndTasksView">
       <div className="plansAndTasksView__wrapper" style={trasnformSettings}>
-        <div className="plansAndTasksView__wrapper__plans">
-          <div className="plansAndTasksView__wrapper__plans__monthPlans">
-            <ReusableContainerComponent>
-              <HeaderComponent headerTitle="Plan Miesięczny" />
-            </ReusableContainerComponent>
-          </div>
-          <div
-            onClick={() => setTransformValue(50)}
-            className="plansAndTasksView__wrapper__plans__rightArrow"
-          >
-            <FontAwesomeIcon icon="angle-right" />
-          </div>
-        </div>
-        <div className="plansAndTasksView__wrapper__tasks">
-          <div
-            onClick={() => setTransformValue(0)}
-            className="plansAndTasksView__wrapper__tasks__leftArrow"
-          >
-            <FontAwesomeIcon icon="angle-left" />
-          </div>
+      <TasksWrapper
+              header="Aktywne zadania"
+              filter={
+                <TasksActiveFilter
+                  setSearch={setSearchActiveValue}
+                  setPriority={() =>
+                    setCheckboxPriorityValue(!checkboxPriorityValue)
+                  }
+                  setSelect={setSelectActiveValue}
+                />
+              }
+              check={true}
+              edit={true}
+              trash={true}
+              data={tempTaskData}
+            />
+
+<TasksWrapper
+              header="Historia zadań"
+              filter={
+                <TasksHistoryFilter
+                  setStartDate={setDateStartValue}
+                  setEndDate={setDateEndValue}
+                  setNotDone={() =>
+                    setCheckboxNotDoneValue(!checkboxNotDoneValue)
+                  }
+                  setSelect={setSelectHistoryValue}
+                />
+              }
+              check={false}
+              edit={false}
+              trash={true}
+              data={tempTaskData}
+            />
+
+        {/* <div className="plansAndTasksView__wrapper__tasks">
           <div className="plansAndTasksView__wrapper__tasks__activeTasks">
             <TasksWrapper
               header="Aktywne zadania"
@@ -90,25 +107,9 @@ const PlansAndTasksView = () => {
             />
           </div>
           <div className="plansAndTasksView__wrapper__tasks__historyTasks">
-            <TasksWrapper
-              header="Historia zadań"
-              filter={
-                <TasksHistoryFilter
-                  setStartDate={setDateStartValue}
-                  setEndDate={setDateEndValue}
-                  setNotDone={() =>
-                    setCheckboxNotDoneValue(!checkboxNotDoneValue)
-                  }
-                  setSelect={setSelectHistoryValue}
-                />
-              }
-              check={false}
-              edit={false}
-              trash={true}
-              data={tempTaskData}
-            />
+            
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="plansAndTasksView__subMenu">
         <SubMenuComponent
