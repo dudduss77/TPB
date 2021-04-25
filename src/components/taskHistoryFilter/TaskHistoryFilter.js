@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./TaskHistoryFilter.scss";
-import "../../globalStyle/forms.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Components
 import CheckboxComponent from "../checkboxComponent/CheckboxComponent";
 import SelectComponent from "../../components/selectComponent/SelectComponent";
+import InputComponent from "../inputComponent/InputComponent";
 
-import sortTypeTask from "../../data/sortTypeTask.json";
+//Data
+import { taskSelect } from "../../data/selectData";
 
-const TaskHistoryFilter = (props) => {
+const TaskHistoryFilter = ({
+  setStartDate,
+  setEndDate,
+  setSelect,
+  setNotDone,
+  initialValue,
+  dateStartInitial,
+  dateEndInitial,
+}) => {
   const [showFilter, setShowFilter] = useState(false);
-
-  const getStartDate = (event) => {
-    event.preventDefault();
-    props.setStartDate(event.target.value);
-  }
-
-  const getEndDate = (event) => {
-    event.preventDefault();
-    props.setEndDate(event.target.value);
-  }
-
-  useEffect(() => {
-    props.setSelect(sortTypeTask[0].sortType)
-  }, [])
-
   return (
     <div className="taskHistoryFilter">
       <div className="taskHistoryFilter__header">
@@ -40,26 +34,36 @@ const TaskHistoryFilter = (props) => {
       {showFilter && (
         <>
           <div className="taskHistoryFilter__inputs">
-            <label className="labelStyle" htmlFor="startDate">
-              Od
-            </label>
-            <input onChange={getStartDate} className="inputStyle" type="date" id="startDate" />
-            <label className="labelStyle" htmlFor="endDate">
-              Do
-            </label>
-            <input onChange={getEndDate} className="inputStyle" type="date" id="endDate" />
+            <InputComponent
+              initialValue={dateStartInitial}
+              orientation="horizontal"
+              labelFor="startDateTaskHistory"
+              label="Od"
+              type="date"
+              getValue={setStartDate}
+            />
+
+            <InputComponent
+              initialValue={dateEndInitial}
+              orientation="horizontal"
+              labelFor="endDateTaskHistory"
+              label="Do"
+              type="date"
+              getValue={setEndDate}
+            />
 
             <CheckboxComponent
               checkboxName="notDone"
               checkboxTitle="Niewykonane"
-              onValueChange={props.setNotDone}
+              onValueChange={setNotDone}
             />
           </div>
 
           <div className="taskHistoryFilter__inputs">
             <SelectComponent
-              optionsData={sortTypeTask}
-              onValueChange={(val) => props.setSelect(val)}
+              optionsData={taskSelect}
+              initialValue={initialValue}
+              onValueChange={(val) => setSelect(val)}
             />
           </div>
         </>

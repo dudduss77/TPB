@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./GoalActiveFilter.scss";
-
-import "../../globalStyle/forms.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Components
+import InputComponent from "../inputComponent/InputComponent";
 import SelectComponent from "../../components/selectComponent/SelectComponent";
 
-import sortTypeTask from "../../data/sortTypeTask.json";
+//Data
+import {goalActiveSelect} from "../../data/selectData"
 
-const GoalActiveFilter = (props) => {
+const GoalActiveFilter = ({ setSearch, setSelect, selectInitialValue, searchInitialValue }) => {
   const [showFilter, setShowFilter] = useState(false);
-
-  const getSearchValue = (event) => {
-    event.preventDefault();
-    props.setSearch(event.target.value);
-  };
-
-  useEffect(() => {
-    props.setSelect(sortTypeTask[0].sortType)
-  }, [])
 
   return (
     <div className="goalActiveFilter">
@@ -35,21 +26,21 @@ const GoalActiveFilter = (props) => {
       {showFilter && (
         <>
           <div className="goalActiveFilter__inputs">
-            <label className="labelStyle" htmlFor="search">
-              Szukaj
-            </label>
-            <input
-              onChange={getSearchValue}
-              className="inputStyle"
-              id="search"
+            <InputComponent
+              initialValue={searchInitialValue}
+              orientation="horizontal"
+              labelFor="goal-search"
+              label="Szukaj"
               type="text"
               placeholder="Szukaj"
+              getValue={setSearch}
             />
           </div>
           <div className="goalActiveFilter__inputs">
             <SelectComponent
-              optionsData={sortTypeTask}
-              onValueChange={(val) => props.setSelect(val)}
+              initialValue={selectInitialValue}
+              optionsData={goalActiveSelect}
+              onValueChange={(val) => setSelect(val)}
             />
           </div>
         </>

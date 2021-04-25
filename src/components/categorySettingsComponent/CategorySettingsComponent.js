@@ -20,7 +20,7 @@ const CategorySettingsComponent = () => {
           // getValue={setNewEmail}
         />
 
-        <ButtonComponent buttonName="Dodaj"/>
+        <ButtonComponent size="small" buttonName="Dodaj"/>
       </div>
       <div className="categorySettingsComponent__wrapper categorySettingsComponent__wrapper--category">
         <CategoryComponent title="Jedzenie"/>

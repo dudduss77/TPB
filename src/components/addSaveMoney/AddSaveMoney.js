@@ -1,22 +1,23 @@
 import React from 'react'
 import './AddSaveMoney.scss'
 
+//Components
 import InputComponent from '../inputComponent/InputComponent'
 import ButtonComponent from '../buttonComponent/ButtonComponent'
+import ErrorComponent from "../errorComponent/ErrorComponent"
 
 const AddSaveMoney = () => {
   return (
       <>
+        <ErrorComponent errorMsg=""/>
         <InputComponent
-        orientation="vertical"
-        size="auto"
         labelFor="expense-title"
         label="Wpłać"
         type="text"
         placeholder="Ile wpłacasz"
         // getValue={setExpenseTitle}
       />
-      <ButtonComponent buttonName="Wpłać" size="auto"/>
+      <ButtonComponent buttonName="Wpłać" />
       </>
   )
 }

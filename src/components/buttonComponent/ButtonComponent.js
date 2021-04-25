@@ -1,12 +1,15 @@
-import React from 'react'
-import './ButtonComponent.scss'
+import React from "react";
+import "./ButtonComponent.scss";
 
-const ButtonComponent = (props) => {
+const ButtonComponent = ({ buttonClick, size = "auto", buttonName, align }) => {
   return (
-    <button onClick={props.buttonClick} className={`buttonComponent buttonComponent--${props.size} buttonComponent--${props.align}`}>
-      {props.buttonName}
+    <button
+      onClick={buttonClick}
+      className={`buttonComponent buttonComponent--${size} buttonComponent--${align}`}
+    >
+      {buttonName}
     </button>
-  )
-}
+  );
+};
 
-export default ButtonComponent
+export default ButtonComponent;

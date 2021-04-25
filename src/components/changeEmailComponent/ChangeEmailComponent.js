@@ -7,8 +7,6 @@ import ButtonComponent from "../buttonComponent/ButtonComponent";
 import HeaderComponent from "../headerComponent/HeaderComponent";
 import InputComponent from "../inputComponent/InputComponent";
 
-import { emailValidator } from "../../validators/emailValidator";
-
 const ChangeEmailComponent = () => {
   const [newEmail, setNewEmail] = useState("");
   const [repEmail, setRepEmail] = useState("");
@@ -22,7 +20,6 @@ const ChangeEmailComponent = () => {
   };
 
   return (
-    // <div onChange={(e) => {emailValidator(e, setErrMsg, setValidate);}} className="changeEmailComponent">
     <div className="changeEmailComponent">
       <HeaderComponent headerTitle="Zmiana adresu email" />
 
@@ -46,7 +43,7 @@ const ChangeEmailComponent = () => {
           getValue={setRepEmail}
         />
 
-        <ButtonComponent buttonClick={submitForm} buttonName="Zmień" />
+        <ButtonComponent buttonClick={submitForm} buttonName="Zmień" size="small"/>
       </div>
     </div>
   );

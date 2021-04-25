@@ -1,32 +1,31 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./DashboardView.scss";
+import moment from "moment";
 
-import { useWindowSize } from "../../customHook/useWindowSize";
-
-import { TaskContext } from "../../App";
-
+//Components
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
-
 import TasksWrapper from "../../components/tasksWrapper/TasksWrapper";
 import SmallBlock from "../../components/smallBlock/SmallBlock";
 import GoalsWrapperComponent from "../../components/goalsWrapperComponent/GoalsWrapperComponent";
 import WeekPlanComponent from "../../components/weekPlanComponent/WeekPlanComponent";
+import DashboardViewMobile from "../DashboardViewMobile/DashboardViewMobile";
 
-import DashboardViewMobile from '../DashboardViewMobile/DashboardViewMobile'
+//Custom hook
+import { useWindowSize } from "../../customHook/useWindowSize";
 
-//Data
-import tempTaskData from "../../data/tempTaskData.json";
+//Context
+import { TaskContext } from "../../context/TaskContext";
+import { GoalContext } from "../../context/GoalContext";
 
 const DashboardView = () => {
-  const taskContext = useContext(TaskContext);
+  const { taskStatus } = useContext(TaskContext);
+  const { goalStatus } = useContext(GoalContext);
 
-  // taskContext.tasksDispatch({type: ACTIONS.ADDTASK, payload: {taskTitle: 'Test'}});
-
-  console.log(taskContext);
+  const [taskData, setTaskData] = useState([]);
+  const [goalData, setGoalData] = useState([]);
 
   const [mobile, setMobile] = useState(false);
   const [viewNumber, setViewNumber] = useState(1);
-
   const size = useWindowSize();
 
   useEffect(() => {
@@ -37,7 +36,21 @@ const DashboardView = () => {
     }
   }, [size.width]);
 
+  useEffect(() => {
+    setTaskData(
+      taskStatus.filter(
+        (task) =>
+          task.status === null && task.date === moment().format("YYYY-MM-DD")
+      )
+    );
+  }, [taskStatus]);
+
+  useEffect(() => {
+    setGoalData(goalStatus.sort((a, b) => a.actualValue > b.actualValue).filter((goal) => goal.done === false).slice(0, 5));
+  }, [goalStatus]);
+
   const weekPlan = <WeekPlanComponent />;
+  // const weekPlan = <></>;
 
   const taskWrapper = (
     <TasksWrapper
@@ -45,7 +58,7 @@ const DashboardView = () => {
       check={true}
       edit={true}
       trash={true}
-      data={tempTaskData}
+      data={taskData}
     />
   );
 
@@ -62,6 +75,7 @@ const DashboardView = () => {
       editValue={true}
       edit={true}
       trash={true}
+      data={goalData}
     />
   );
   return (
@@ -69,13 +83,9 @@ const DashboardView = () => {
       <div className="dashboardView__wrapper">
         {!mobile && (
           <>
-            <div className="dashboardView__wrapper__plan">
-              {weekPlan}
-            </div>
+            <div className="dashboardView__wrapper__plan">{weekPlan}</div>
 
-            <div className="dashboardView__wrapper__task">
-              {taskWrapper}
-            </div>
+            <div className="dashboardView__wrapper__task">{taskWrapper}</div>
 
             <div className="dashboardView__wrapper__budgetOne">
               <SmallBlock header="Twój budżet" value="123" currency={true} />
@@ -89,9 +99,7 @@ const DashboardView = () => {
               />
             </div>
 
-            <div className="dashboardView__wrapper__goals">
-              {goalWrapper}
-            </div>
+            <div className="dashboardView__wrapper__goals">{goalWrapper}</div>
           </>
         )}
 

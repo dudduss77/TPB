@@ -1,89 +1,108 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./WeekPlanAdd.scss";
 import { CirclePicker } from "react-color";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
 
+//Components
 import HeaderComponent from "../headerComponent/HeaderComponent";
 import InputComponent from "../inputComponent/InputComponent";
 import SelectComponent from "../selectComponent/SelectComponent";
 import ButtonComponent from "../buttonComponent/ButtonComponent";
+import ErrorComponent from "../errorComponent/ErrorComponent";
 
-const generateHours = () => {
-  let hours = [];
-  for (let i = 0; i < 24; i++) {
-    hours.push(
-      {
-        selectHeader: i + ":00",
-        selectValue: i + ":00",
-      },
-      {
-        selectHeader: i + ":15",
-        selectValue: i + ":15",
-      },
-      {
-        selectHeader: i + ":30",
-        selectValue: i + ":30",
-      },
-      {
-        selectHeader: i + ":45",
-        selectValue: i + ":45",
-      }
-    );
-  }
-  console.log(hours);
-  return hours;
-};
+//Context
+import { AppContext } from "../../context/AppContext";
+import { WeekPlanContext } from "../../context/WeekPlanContext";
+//Data
+import { addWeekPlan, weekPlanDay } from "../../data/selectData";
+import axios from "axios";
 
 const WeekPlanAdd = ({ onClick }) => {
+  const { actionType, appState, appDispatch } = useContext(AppContext);
+  const { weekPlanAction, weekPlanStatus, weekPlanDispatch } = useContext(
+    WeekPlanContext
+  );
+
   const [color, setColor] = useState();
+  const [title, setTitle] = useState("");
+  const [dayNumber, setDayNumber] = useState("1");
+  const [startHour, setStartHour] = useState("0:00");
+  const [endHour, setEndHour] = useState("0:00");
 
   const onBackgroundClick = (event) => {
-    event.preventDefault();
-    if (event.target.getAttribute("class") === "weekPlanAdd") onClick();
+    // event.preventDefault();
+    if (
+      event.target.getAttribute("class") === "weekPlanAdd" ||
+      event.target.getAttribute("class") === "weekPlanAdd__wrapper__close" ||
+      event.target.parentNode.parentNode.getAttribute("class") ===
+        "weekPlanAdd__wrapper__close"
+    )
+      appDispatch({
+        type: actionType.closeAddEditPlan,
+      });
   };
 
   const handleChangeComplete = (color, event) => {
-    setColor({ background: color.hex });
+    setColor(color.hex);
   };
 
-  useEffect(() => {
-    console.log(color);
-  }, [color]);
+  const submitWeekPlan = () => {
+    let weekPlanBlock = {
+      id: moment.now(),
+      title: title,
+      dayNumber: dayNumber,
+      hourStart: startHour,
+      hourEnd: endHour,
+      background: color,
+    };
+
+    axios.post('http://localhost:5000/weekPlan', weekPlanBlock)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+
+    weekPlanDispatch({type: weekPlanAction.add, payload: weekPlanBlock})
+  };
 
   return (
-    <div
-      onLoad={generateHours}
-      onClick={onBackgroundClick}
-      className="weekPlanAdd"
-    >
+    <div onClick={onBackgroundClick} className="weekPlanAdd">
       <div className="weekPlanAdd__wrapper">
-        <HeaderComponent headerTitle="Dodaj do planu" />
-        <div onClick={() => onClick()} className="weekPlanAdd__wrapper__close">
-          <FontAwesomeIcon icon="times"/>
+        <HeaderComponent
+          headerTitle={appState.planAddEdit.editMode ? "Edycja" : "Dodawanie"}
+        />
+        <div className="weekPlanAdd__wrapper__close">
+          <FontAwesomeIcon icon="times" />
         </div>
         <div className="weekPlanAdd__wrapper__items">
+          <ErrorComponent errorMsg="" />
           <InputComponent
-            orientation="vertical"
-            size="auto"
+            initialValue={title}
             labelFor="name"
             label="Nazwa"
             type="text"
             placeholder="Nazwa"
-            // getValue={setExpenseDate}
+            getValue={setTitle}
           />
 
           <SelectComponent
-            optionsData={generateHours()}
+            initialValue={dayNumber}
+            optionsData={weekPlanDay}
+            label="Dzień"
+            onValueChange={(val) => setDayNumber(val)}
+          />
+
+          <SelectComponent
+            initialValue={startHour}
+            optionsData={addWeekPlan()}
             label="Godzina rozpoczęcia"
-            // onValueChange={(val) => setExpenseCategory(val)}
-            size="auto"
+            onValueChange={(val) => setStartHour(val)}
           />
 
           <SelectComponent
-            optionsData={generateHours()}
+            initialValue={endHour}
+            optionsData={addWeekPlan()}
             label="Godzina zakończenia"
-            // onValueChange={(val) => setExpenseCategory(val)}
-            size="auto"
+            onValueChange={(val) => setEndHour(val)}
           />
           <div className="weekPlanAdd__wrapper__colorPicker">
             <label className="weekPlanAdd__wrapper__colorPicker__label">
@@ -93,9 +112,8 @@ const WeekPlanAdd = ({ onClick }) => {
           </div>
 
           <ButtonComponent
-            buttonName="Dodaj"
-            size="auto"
-            // buttonClick={}
+            buttonName={appState.planAddEdit.editMode ? "Edytuj" : "Dodaj"}
+            buttonClick={() => submitWeekPlan()}
           />
         </div>
       </div>

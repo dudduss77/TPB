@@ -1,49 +1,39 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 
-import InputComponent from '../inputComponent/InputComponent'
-import CheckboxComponent from '../checkboxComponent/CheckboxComponent'
-import ButtonComponent from '../buttonComponent/ButtonComponent'
-import SelectComponent from '../selectComponent/SelectComponent'
+//Components
+import InputComponent from "../inputComponent/InputComponent";
+import ButtonComponent from "../buttonComponent/ButtonComponent";
+import SelectComponent from "../selectComponent/SelectComponent";
+import ErrorComponent from "../errorComponent/ErrorComponent";
 
 const TempCategory = [
   {
+    selectHeader: "Brak",
+    selectValue: "empty",
+  },
+  {
     selectHeader: "Jedzenie",
-    selectValue: "eat"
+    selectValue: "eat",
   },
   {
     selectHeader: "Hobby",
-    selectValue: "hobby"
+    selectValue: "hobby",
   },
   {
     selectHeader: "Nauka",
-    selectValue: "learning"
-  }
-]
-
-const TempConstatnTerm = [
-  {
-    selectHeader: "Codziennie",
-    selectValue: "everyday"
+    selectValue: "learning",
   },
-  {
-    selectHeader: "Co tydzień",
-    selectValue: "everyweek"
-  },
-  {
-    selectHeader: "Co miesiąc",
-    selectValue: "everymonth"
-  }
-]
+];
 
 const AddExpenseComponent = () => {
-  const [expenseTitle, setExpenseTitle] = useState('');
-  const [expenseDate, setExpenseDate] = useState('');
-  const [expenseCost, setExpenseCost] = useState('');
-  const [expenseCategory, setExpenseCategory] = useState('');
-  const [isConstant, setIsConstant] = useState(false);
-  const [constantTerm, setConstantTermn] = useState('');
+  const [expenseTitle, setExpenseTitle] = useState("");
+  const [expenseDate, setExpenseDate] = useState("");
+  const [expenseCost, setExpenseCost] = useState("");
+  const [expenseCategory, setExpenseCategory] = useState("empty");
+  const [constantTerm, setConstantTermn] = useState("");
   return (
     <>
+      <ErrorComponent errorMsg="" />
       <InputComponent
         orientation="vertical"
         size="auto"
@@ -73,36 +63,16 @@ const AddExpenseComponent = () => {
         getValue={setExpenseDate}
       />
 
-      <SelectComponent 
+      <SelectComponent
+        initialValue={expenseCategory}
         optionsData={TempCategory}
         onValueChange={(val) => setExpenseCategory(val)}
         size="auto"
       />
 
-      <CheckboxComponent
-        size="auto"
-        checkboxName="isConstant"
-        checkboxTitle="Czy wydatek stały"
-        onValueChange={() => setIsConstant(!isConstant)}
-      />
-
-      {isConstant && (
-        <SelectComponent 
-          optionsData={TempConstatnTerm}
-          onValueChange={(val) => setConstantTermn(val)}
-          size="auto"
-        />
-      )}
-
-      
-
-
-      <ButtonComponent
-        buttonName="Dodaj"
-        size="auto"
-      />
+      <ButtonComponent buttonName="Dodaj" size="auto" />
     </>
-  )
-}
+  );
+};
 
-export default AddExpenseComponent
+export default AddExpenseComponent;

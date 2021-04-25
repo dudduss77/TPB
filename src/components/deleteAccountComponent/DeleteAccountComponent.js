@@ -23,12 +23,13 @@ const DeleteAccountComponent = () => {
       <div className="deleteAccountComponent__errorMsg">{errMsg}</div>
       <CheckboxComponent
         customColor="red"
+        align="center"
         checkboxName="delAccount"
         checkboxTitle="Czy napewno chcesz usunąć konto"
         showError={true}
         onValueChange={() => setDelAccountCheckbox(!delAccountCheckbox)}
       />
-      <ButtonComponent buttonClick={submitDelAccount} buttonName="Usuń" />
+      <ButtonComponent buttonClick={submitDelAccount} buttonName="Usuń" size="small"/>
     </div>
   );
 };

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./AppSettingsView.scss";
-
 import { useWindowSize } from "../../customHook/useWindowSize";
 
+//Components
 import NotifySettingsComponent from "../../components/notifySettingsComponent/NotifySettingsComponent";
 import CategorySettingsComponent from "../../components/categorySettingsComponent/CategorySettingsComponent";
 import BudgetSettings from "../../components/budgetSettings/BudgetSettings";
 import SaveMoneySettings from "../../components/saveMoneySettings/SaveMoneySettings";
 import WeekSettingsComponent from "../../components/weekSettingsComponent/WeekSettingsComponent";
-
-import AppSettingsViewMobile from '../AppSettingsViewMobile/AppSettingsView'
+import AppSettingsViewMobile from "../AppSettingsViewMobile/AppSettingsView";
 
 const AppSettingsView = () => {
   const [mobile, setMobile] = useState(false);
@@ -31,7 +30,6 @@ const AppSettingsView = () => {
       <WeekSettingsComponent />
     </>
   );
-
   const midColumn = <CategorySettingsComponent />;
 
   const rightColumn = (
@@ -46,24 +44,20 @@ const AppSettingsView = () => {
       <div className="appSettingsView__wrapper">
         {!mobile && (
           <>
-            <div className="appSettingsView__wrapper__items">
-              {leftColumn}
-            </div>
-            <div className="appSettingsView__wrapper__items">
-              {midColumn}
-            </div>
-            <div className="appSettingsView__wrapper__items">
-              {rightColumn}
-            </div>
+            <div className="appSettingsView__wrapper__items">{leftColumn}</div>
+            <div className="appSettingsView__wrapper__items">{midColumn}</div>
+            <div className="appSettingsView__wrapper__items">{rightColumn}</div>
           </>
         )}
 
-        {mobile && (<AppSettingsViewMobile
-          view={viewNumber}
-          leftColumn={leftColumn}
-          midColumn={midColumn}
-          rightColumn={rightColumn}
-        />)}
+        {mobile && (
+          <AppSettingsViewMobile
+            view={viewNumber}
+            leftColumn={leftColumn}
+            midColumn={midColumn}
+            rightColumn={rightColumn}
+          />
+        )}
       </div>
       <div className="appSettingsView__subMenu">
         <div

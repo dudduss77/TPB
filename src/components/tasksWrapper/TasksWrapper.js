@@ -4,26 +4,30 @@ import "./TasksWrapper.scss";
 import HeaderComponent from "../headerComponent/HeaderComponent";
 import TaskComponent from "../taskComponent/TaskComponent";
 
-const TasksWrapper = (props) => {
+const TasksWrapper = ({header, filter, check, edit, trash, data}) => {
+  
+
   return (
     <div className="tasksWrapper">
-      <HeaderComponent headerTitle={props.header} />
+      <HeaderComponent headerTitle={header} />
 
-      {props.filter && props.filter}
+      {filter && filter}
 
       <div className="tasksWrapper__tasks">
-        {props.data.map((task) => {
+        {data.map((task) => {
           return (
+            
             <TaskComponent
-              key={task.key}
-              taskCheck={props.check}
-              taskEdit={props.edit}
-              taskTrash={props.trash}
+              key={task.id}
+              id={task.id}
+              taskCheck={check}
+              taskEdit={edit}
+              taskTrash={trash}
               
-              taskTitle={task.taskTitle}
-              taskDate={task.taskDate}
-              taskDesc={task.taskDesc}
-              taskStatus={task.taskStatus}
+              taskTitle={task.title}
+              taskDate={task.date}
+              taskDesc={task.desc}
+              taskStatus={task.status}
             />
           );
         })}

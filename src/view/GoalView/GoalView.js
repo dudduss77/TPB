@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./GoalView.scss";
-import "../../globalStyle/wrappers.scss";
-
 import { useWindowSize } from "../../customHook/useWindowSize";
 
+//Components
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
 import GoalActiveFilter from "../../components/goalActiveFilter/GoalActiveFilter";
 import GoalHistoryFilter from "../../components/goalHistoryFilter/GoalHistoryFilter";
@@ -11,14 +10,30 @@ import SmallBlock from "../../components/smallBlock/SmallBlock";
 import GoalsWrapperComponent from "../../components/goalsWrapperComponent/GoalsWrapperComponent";
 import GoalViewMobile from "../GoalViewMobile/GoalViewMobile";
 
+//Context
+import { GoalContext } from "../../context/GoalContext";
+
+//SortFilter
+import {
+  sortFilterActive,
+  sortFilterHistory,
+} from "../../sortFilterFunctions/sortFilterGoal";
+
 const GoalView = () => {
+  const { goalActionType, goalStatus, goalDispatch } = useContext(GoalContext);
+
   const [mobile, setMobile] = useState(false);
   const [viewNumber, setViewNumber] = useState(1);
 
-  const [selectValueActive, setSelectValueActive] = useState("");
+  const [activeData, setActiveData] = useState([]);
+  const [historyData, setHistoryData] = useState([]);
+  const [allGoal, setAllGoal] = useState("");
+  const [doneGoal, setDoneGoal] = useState("");
+
+  const [selectValueActive, setSelectValueActive] = useState("progress-down");
   const [searchValueActive, setSearchValueActive] = useState("");
 
-  const [selectValueHistory, setSelectValueHistory] = useState("");
+  const [selectValueHistory, setSelectValueHistory] = useState("date-down");
   const [unrealizedCheckboxValue, setUnrealizedCheckboxValue] = useState(false);
 
   const size = useWindowSize();
@@ -31,19 +46,42 @@ const GoalView = () => {
     }
   }, [size.width]);
 
+  useEffect(() => {
+    setActiveData(
+      sortFilterActive(goalStatus, searchValueActive, selectValueActive)
+    );
+  }, [goalStatus, searchValueActive, selectValueActive]);
+
+  useEffect(() => {
+    setHistoryData(
+      sortFilterHistory(goalStatus, unrealizedCheckboxValue, selectValueHistory)
+    );
+  }, [goalStatus, unrealizedCheckboxValue, selectValueHistory]);
+
+  useEffect(() => {
+    setAllGoal(goalStatus.length);
+    setDoneGoal(
+      goalStatus.filter(
+        (goal) => goal.done === true && goal.actualValue >= goal.toValue
+      ).length
+    );
+  }, [goalStatus, unrealizedCheckboxValue]);
 
   const activeGoals = (
     <GoalsWrapperComponent
       header="Aktywne cele"
       filter={
         <GoalActiveFilter
-          setSearch={setSelectValueActive}
-          setSelect={setSearchValueActive}
+          setSearch={setSearchValueActive}
+          setSelect={setSelectValueActive}
+          selectInitialValue={selectValueActive}
+          searchInitialValue={searchValueActive}
         />
       }
       editValue={true}
       edit={true}
       trash={true}
+      data={activeData}
     />
   );
 
@@ -56,19 +94,20 @@ const GoalView = () => {
             setUnrealizedCheckboxValue(!unrealizedCheckboxValue)
           }
           setSelect={setSelectValueHistory}
+          selectInitialValue={selectValueHistory}
         />
       }
       editValue={false}
       edit={false}
       trash={true}
+      data={historyData}
     />
   );
 
   const smallBlocks = (
     <>
-      <SmallBlock header="Wszystkich celi" value="3" />
-      <SmallBlock header="Ilość zrealizowanych" value="3" />
-      <SmallBlock header="Ile przeznaczono na cele" value="3" currency={true} />
+      <SmallBlock header="Wszystkich celi" value={allGoal} />
+      <SmallBlock header="Ilość zrealizowanych" value={doneGoal} />
     </>
   );
 
@@ -77,50 +116,13 @@ const GoalView = () => {
       <div className="goalView__wrapper">
         {!mobile && (
           <>
-            <div className="goalView__wrapper__active">
-            {activeGoals}
-              {/* <GoalsWrapperComponent
-                header="Aktywne cele"
-                filter={
-                  <GoalActiveFilter
-                    setSearch={setSelectValueActive}
-                    setSelect={setSearchValueActive}
-                  />
-                }
-                editValue={true}
-                edit={true}
-                trash={true}
-              /> */}
-            </div>
-            <div className="goalView__wrapper__history">
-              {historyGoals}
-              {/* <GoalsWrapperComponent
-                header="Historia"
-                filter={
-                  <GoalHistoryFilter
-                    setUnrealized={() =>
-                      setUnrealizedCheckboxValue(!unrealizedCheckboxValue)
-                    }
-                    setSelect={setSelectValueHistory}
-                  />
-                }
-                editValue={false}
-                edit={false}
-                trash={true}
-              /> */}
-            </div>
+            <div className="goalView__wrapper__active">{activeGoals}</div>
+            <div className="goalView__wrapper__history">{historyGoals}</div>
             <div className="goalView__wrapper__allGoals">
-              <SmallBlock header="Wszystkich celi" value="3" />
+              <SmallBlock header="Wszystkich celi" value={allGoal} />
             </div>
             <div className="goalView__wrapper__completGoal">
-              <SmallBlock header="Ilość zrealizowanych" value="3" />
-            </div>
-            <div className="goalView__wrapper__moneyGoal">
-              <SmallBlock
-                header="Ile przeznaczono na cele"
-                value="3"
-                currency={true}
-              />
+              <SmallBlock header="Ilość zrealizowanych" value={doneGoal} />
             </div>
           </>
         )}

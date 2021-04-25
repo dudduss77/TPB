@@ -1,0 +1,5 @@
+
+export const ACTIONTYPE = {
+  SHOWADD: 'SHOWADD',
+  SHOWNOTIFY: 'SHOWNOTIFY'
+}

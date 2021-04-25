@@ -37,6 +37,7 @@ const NotifySettingsComponent = () => {
 
       <div className="notifySettingsComponent__button">
         <ButtonComponent
+        size="small"
           buttonClick={submitNotifySettings}
           buttonName="Zmień"
         />

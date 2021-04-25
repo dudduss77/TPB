@@ -7,7 +7,7 @@ import ExpenseComponent from '../expenseComponent/ExpenseComponent'
 import SaveMoneyComponent from '../saveMoneyComponent/SaveMoneyComponent'
  
 const BudgetHistoryComponent = (props) => {
-  const [selectValue, setSelectValue] = useState("");
+  const [selectValue, setSelectValue] = useState("date-up");
   const [dateStartValue, setDateStartValue] = useState();
   const [dateEndValue, setDateEndValue] = useState();
   const [isSaveMoney, setIsSaveMoney] = useState(false);
@@ -15,6 +15,8 @@ const BudgetHistoryComponent = (props) => {
     <div className="budgetHistoryComponent">
       <HeaderComponent headerTitle="Historia" />
       <BudgetFilter
+        checkboxInitialValue={isSaveMoney}
+        selectInitialValue={selectValue}
         setStartDate={setDateStartValue}
         setEndDate={setDateEndValue}
         setSaveMoney={() => setIsSaveMoney(!isSaveMoney)}

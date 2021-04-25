@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-
 import "./ChangePasswordComponent.scss";
-import "../../globalStyle/forms.scss";
-
-import { passwordValidator } from "../../validators/passwordValidator";
 
 import ButtonComponent from "../buttonComponent/ButtonComponent";
-
 import HeaderComponent from "../headerComponent/HeaderComponent";
 import InputComponent from "../inputComponent/InputComponent";
 
@@ -58,7 +53,7 @@ const ChangePasswordComponent = () => {
           getValue={setRepeatPass}
         />
 
-        <ButtonComponent buttonClick={submitForm} buttonName="Zmień" />
+        <ButtonComponent buttonClick={submitForm} buttonName="Zmień" size="small"/>
       </div>
     </div>
   );

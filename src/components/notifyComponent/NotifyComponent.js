@@ -1,28 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./NotifyComponent.scss";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import TasksWrapper from "../tasksWrapper/TasksWrapper";
 import GoalsWrapperComponent from "../goalsWrapperComponent/GoalsWrapperComponent";
-import ExpenseWrapper from '../expenseWrapper/ExpenseWrapper'
+import ExpenseWrapper from "../expenseWrapper/ExpenseWrapper";
+
+import { AppContext } from "../../context/AppContext";
 
 import tempTaskData from "../../data/tempTaskData.json";
 
 const NotifyComponent = (props) => {
+  const { actionType, appDispatch } = useContext(AppContext);
 
   const closeNotify = (event) => {
     event.preventDefault();
-    if(event.target.getAttribute('class') === 'notifyComponent') {
-      props.close();
+    if (
+      event.target.getAttribute("class") === "notifyComponent" ||
+      event.target.getAttribute("class") ===
+        "notifyComponent__wrapper__close" ||
+      event.target.parentNode.parentNode.getAttribute("class") ===
+        "notifyComponent__wrapper__close"
+    ) {
+      appDispatch({ type: actionType.showNotifyMenu });
     }
-  }
+  };
 
   return (
     <div onClick={closeNotify} className="notifyComponent">
       <div className="notifyComponent__wrapper">
-        <div onClick={() => props.close()} className="notifyComponent__wrapper__close">
-          <FontAwesomeIcon icon="times"/>
+        <div className="notifyComponent__wrapper__close">
+          <FontAwesomeIcon icon="times" />
         </div>
         <div className="notifyComponent__wrapper__items">
           <TasksWrapper
@@ -34,7 +42,7 @@ const NotifyComponent = (props) => {
           />
         </div>
         <div className="notifyComponent__wrapper__items">
-          <ExpenseWrapper 
+          <ExpenseWrapper
             header="Przypomnienie o płatnościach"
             edit={false}
             trash={false}

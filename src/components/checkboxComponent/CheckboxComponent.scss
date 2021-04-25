@@ -1,5 +1,6 @@
 .checkboxComponent {
-  // width: 100%;
+  display: flex;
+  // justify-content: center;
 
   &--small {
     width: 250px;
@@ -9,8 +10,13 @@
     width: 100%;
   }
 
+  &--center {
+    justify-content: center;
+  }
+
   &__input {
     position: absolute;
+    z-index: 4;
     visibility: hidden;
   }
 

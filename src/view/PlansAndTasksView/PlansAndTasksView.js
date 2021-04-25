@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
 import "./PlansAndTasksView.scss";
-import "../../globalStyle/wrappers.scss";
 
 import { useWindowSize } from "../../customHook/useWindowSize";
 
+//Components
 import SubMenuComponent from "../../components/subMenuComponent/SubMenuComponent";
 import TasksActiveFilter from "../../components/tasksActiveFilter/TasksActiveFilter";
 import TasksHistoryFilter from "../../components/taskHistoryFilter/TaskHistoryFilter";
-
 import TasksWrapper from "../../components/tasksWrapper/TasksWrapper";
-
 import PlansAndTasksViewMobile from "../PlansAndTasksViewMobile/PlansAndTasksViewMobile";
 
-import tempTaskData from "../../data/tempTaskData.json";
+//Context
+import { TaskContext } from "../../context/TaskContext";
+
+//SortFilter
+import {
+  sortFilterActive,
+  sortFilterHistory,
+} from "../../sortFilterFunctions/sortFilterTasks";
 
 const PlansAndTasksView = () => {
+  const { taskStatus } = useContext(TaskContext);
+  
+  //Mobile view
   const [mobile, setMobile] = useState(false);
   const [viewNumber, setViewNumber] = useState(1);
 
-  const size = useWindowSize();
-
-  useEffect(() => {
-    if (size.width <= 1230) {
-      setMobile(true);
-    } else if (size.width > 1230) {
-      setMobile(false);
-    }
-  }, [size.width]);
+  //Data
+  const [activeData, setActiveData] = useState([]);
+  const [historyData, setHistoryData] = useState([]);
 
   //Var for active tasks
   const [searchActiveValue, setSearchActiveValue] = useState("");
@@ -40,6 +41,45 @@ const PlansAndTasksView = () => {
   const [selectHistoryValue, setSelectHistoryValue] = useState("");
   const [checkboxNotDoneValue, setCheckboxNotDoneValue] = useState(false);
 
+  const size = useWindowSize();
+
+  useEffect(() => {
+    if (size.width <= 1230) {
+      setMobile(true);
+    } else if (size.width > 1230) {
+      setMobile(false);
+    }
+  }, [size.width]);
+
+  useEffect(() => {
+    setActiveData(
+      sortFilterActive(
+        taskStatus,
+        searchActiveValue,
+        checkboxPriorityValue,
+        selectActiveValue
+      )
+    );
+  }, [taskStatus, searchActiveValue, checkboxPriorityValue, selectActiveValue]);
+
+  useEffect(() => {
+    setHistoryData(
+      sortFilterHistory(
+        taskStatus,
+        checkboxNotDoneValue,
+        dateStartValue,
+        dateEndValue,
+        selectHistoryValue
+      )
+    );
+  }, [
+    taskStatus,
+    checkboxNotDoneValue,
+    dateStartValue,
+    dateEndValue,
+    selectHistoryValue,
+  ]);
+
   const activeTask = (
     <TasksWrapper
       header="Aktywne zadania"
@@ -48,12 +88,13 @@ const PlansAndTasksView = () => {
           setSearch={setSearchActiveValue}
           setPriority={() => setCheckboxPriorityValue(!checkboxPriorityValue)}
           setSelect={setSelectActiveValue}
+          initialValue="name-up"
         />
       }
       check={true}
       edit={true}
       trash={true}
-      data={tempTaskData}
+      data={activeData}
     />
   );
 
@@ -66,12 +107,15 @@ const PlansAndTasksView = () => {
           setEndDate={setDateEndValue}
           setNotDone={() => setCheckboxNotDoneValue(!checkboxNotDoneValue)}
           setSelect={setSelectHistoryValue}
+          initialValue="name-up"
+          dateStartInitial={dateStartValue}
+          dateEndInitial={dateEndValue}
         />
       }
       check={false}
       edit={false}
       trash={true}
-      data={tempTaskData}
+      data={historyData}
     />
   );
 

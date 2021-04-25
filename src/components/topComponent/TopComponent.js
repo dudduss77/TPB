@@ -21,7 +21,7 @@ const TopComponent = (props) => {
         <NotificationIconComponent onNotificationClick={props.onNotificationClick} />
       </div>
       <div className="topComponent__add">
-        <AddIconComponent onAddClick={props.onAddClick}/>
+        <AddIconComponent />
       </div>
       <div className="topComponent__hamburger">
         <HamburgerIconComponent onHamburgerClick={props.onHamburgerClick}/>

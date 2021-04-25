@@ -1,49 +1,92 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./TaskComponent.scss";
+
+import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-//Context
-import { TaskContext } from "../../App";
+import { AppContext } from "../../context/AppContext";
+import { TaskContext } from "../../context/TaskContext";
 
-//Actions
-import { ACTIONS } from "../../reducers/taskReducer";
-
-const TaskComponent = (props) => {
+const TaskComponent = ({
+  id,
+  taskCheck,
+  taskTitle,
+  taskDate,
+  taskEdit,
+  taskTrash,
+  taskDesc,
+  taskStatus,
+}) => {
   const [showMore, setShowMore] = useState(false);
-  const taskContext = useContext(TaskContext);
+  const { actionType, appState, appDispatch } = useContext(AppContext);
+  const { taskAction, taskDispatch } = useContext(TaskContext);
+
+  const checkPositive = (val) => {
+    taskDispatch({ type: taskAction.checkPositive, payload: val });
+
+    axios
+      .patch(`http://localhost:5000/tasks/${val}`, { status: true })
+      .then((results) => console.log(results))
+      .catch((error) => console.log(error));
+  };
+
+  const checkNegative = (val) => {
+    taskDispatch({ type: taskAction.checkNegative, payload: val });
+
+    axios
+      .patch(`http://localhost:5000/tasks/${val}`, { status: false })
+      .then((results) => console.log(results))
+      .catch((error) => console.log(error));
+  };
+
+  const removeItem = (val) => {
+    taskDispatch({ type: taskAction.delete, payload: val });
+
+    axios
+      .delete(`http://localhost:5000/tasks/${val}`)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="taskComponent">
       <div className="taskComponent__header">
-        {props.taskCheck && (
-          <div className="taskComponent__header__icon">
+        {taskCheck && (
+          <div
+            onClick={() => checkPositive(id)}
+            className="taskComponent__header__icon"
+          >
             <FontAwesomeIcon icon="check" />
           </div>
         )}
-        {props.taskCheck && (
-          <div className="taskComponent__header__icon">
+        {taskCheck && (
+          <div
+            onClick={() => checkNegative(id)}
+            className="taskComponent__header__icon"
+          >
             <FontAwesomeIcon icon="times" />
           </div>
         )}
-        <div className="taskComponent__header__title">{props.taskTitle}</div>
-        <div className="taskComponent__header__date">{props.taskDate}</div>
+        <div className="taskComponent__header__title">{taskTitle}</div>
+        <div className="taskComponent__header__date">{taskDate}</div>
 
-        {props.taskEdit && (
-          <div className="taskComponent__header__icon">
+        {taskEdit && (
+          <div
+            onClick={() =>
+              appDispatch({ type: actionType.editTaskMenu, payload: id })
+            }
+            className="taskComponent__header__icon"
+          >
             <FontAwesomeIcon icon="edit" />
           </div>
         )}
-        {props.taskTrash && (
-          <div className="taskComponent__header__icon">
-            <FontAwesomeIcon
-              icon="trash-alt"
-              onClick={() =>
-                taskContext.tasksDispatch({
-                  type: ACTIONS.DELTASK,
-                  payload: { id: props.id },
-                })
-              }
-            />
+        {taskTrash && (
+          <div
+            onClick={() => removeItem(id)}
+            className="taskComponent__header__icon"
+          >
+            <FontAwesomeIcon icon="trash-alt" />
           </div>
         )}
 
@@ -57,18 +100,16 @@ const TaskComponent = (props) => {
 
       {showMore && (
         <div className="taskComponent__description">
-          <div className="taskComponent__description__content">
-            {props.taskDesc}
-          </div>
-          {!props.taskCheck && (
+          <div className="taskComponent__description__content">{taskDesc}</div>
+          {!taskCheck && (
             <div
               className={`taskComponent__description__message  ${
-                props.taskStatus
+                taskStatus
                   ? "taskComponent__description__message--good"
                   : "taskComponent__description__message--bad"
               }`}
             >
-              {props.taskStatus
+              {taskStatus
                 ? "Potwierdzone przez użytkownika"
                 : "Upłynął czas nie potwiedzone"}
             </div>

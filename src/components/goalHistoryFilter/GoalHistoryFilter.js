@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./GoalHistoryFilter.scss";
-
-import "../../globalStyle/forms.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Components
 import CheckboxComponent from "../../components/checkboxComponent/CheckboxComponent";
 import SelectComponent from "../../components/selectComponent/SelectComponent";
 
-import sortTypeTask from "../../data/sortTypeTask.json";
+//Data
+import { goalHistorySelect } from "../../data/selectData";
 
-const GoalHistoryFilter = (props) => {
+const GoalHistoryFilter = ({ setSelect, setUnrealized, selectInitialValue }) => {
   const [showFilter, setShowFilter] = useState(false);
-
-  useEffect(() => {
-    props.setSelect(sortTypeTask[0].sortType)
-  }, [])
 
   return (
     <div className="goalHistoryFilter">
@@ -29,20 +24,21 @@ const GoalHistoryFilter = (props) => {
       </div>
       {showFilter && (
         <>
-      <div className="goalHistoryFilter__inputs">
-        <CheckboxComponent
-          checkboxName="unrealized"
-          checkboxTitle="Niezrealizowane"
-          onValueChange={props.setUnrealized}
-        />
-      </div>
-      <div className="goalHistoryFilter__inputs">
-        <SelectComponent
-          optionsData={sortTypeTask}
-          onValueChange={(val) => props.setSelect(val)}
-        />
-      </div>
-      </>
+          <div className="goalHistoryFilter__inputs">
+            <CheckboxComponent
+              checkboxName="unrealized"
+              checkboxTitle="Niezrealizowane"
+              onValueChange={setUnrealized}
+            />
+          </div>
+          <div className="goalHistoryFilter__inputs">
+            <SelectComponent
+              initialValue={selectInitialValue}
+              optionsData={goalHistorySelect}
+              onValueChange={(val) => setSelect(val)}
+            />
+          </div>
+        </>
       )}
     </div>
   );

@@ -1,41 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./AddComponent.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+//Components
 import HeaderComponent from "../headerComponent/HeaderComponent";
 import SelectComponent from "../selectComponent/SelectComponent";
 import AddTaskComponent from "../addTaskComponent/AddTaskComponent";
 import AddExpenseComponent from "../addExpenseComponent/AddExpenseComponent";
 import AddGoalComponent from "../addGoalComponent/AddGoalComponent";
 import AddSaveMoney from "../addSaveMoney/AddSaveMoney";
+import UpdateGoalValue from '../updateGoalValue/UpdateGoalValue'
 
-const selectOptions = [
-  {
-    selectHeader: "Zadanie",
-    selectValue: "task",
-  },
-  {
-    selectHeader: "Wydatek",
-    selectValue: "expense",
-  },
-  {
-    selectHeader: "Cel",
-    selectValue: "goal",
-  },
-  {
-    selectHeader: "Oszczędzanie",
-    selectValue: "save-money",
-  },
-];
+//Context
+import { AppContext } from "../../context/AppContext";
 
-const AddComponent = (props) => {
-  const [selectValue, setSelectValue] = useState(selectOptions[0].selectValue);
+//Data
+import { addComponentSelect } from "../../data/selectData";
+
+const AddComponent = () => {
+  const { actionType, appState, appDispatch } = useContext(AppContext);
+  const [selectValue, setSelectValue] = useState(
+    appState.addEdit.editMode ? appState.addEdit.whatEdit : "task"
+  );
 
   const closeMenu = (event) => {
-    event.preventDefault();
-    if (event.target.getAttribute("class") === "addComponent")
-      props.setShowAdd();
+    if (
+      event.target.getAttribute("class") === "addComponent" ||
+      event.target.getAttribute("class") === "addComponent__wrapper__close" ||
+      event.target.parentNode.parentNode.getAttribute("class") ===
+        "addComponent__wrapper__close"
+    )
+      appDispatch({ type: actionType.closeAddEdit });
   };
 
   const renderComponent = (value) => {
@@ -48,6 +43,8 @@ const AddComponent = (props) => {
         return <AddGoalComponent />;
       case "save-money":
         return <AddSaveMoney />;
+      case "update-goal-value":
+        return <UpdateGoalValue/>;
       default:
         return <p>Coś poszło nie tak</p>;
     }
@@ -55,16 +52,21 @@ const AddComponent = (props) => {
   return (
     <div onClick={closeMenu} className="addComponent">
       <div className="addComponent__wrapper">
-        <HeaderComponent headerTitle="Dodawanie" />
-        <div onClick={() => props.setShowAdd()} className="addComponent__wrapper__close">
-        <FontAwesomeIcon icon="times"/>
+        <HeaderComponent
+          headerTitle={appState.addEdit.editMode ? "Edycja" : "Dodawanie"}
+        />
+        <div className="addComponent__wrapper__close">
+          <FontAwesomeIcon icon="times" />
         </div>
         <div className="addComponent__wrapper__items">
-          <SelectComponent
-            optionsData={selectOptions}
-            onValueChange={(val) => setSelectValue(val)}
-            size="auto"
-          />
+          {!appState.addEdit.editMode && (
+            <SelectComponent
+              optionsData={addComponentSelect}
+              initialValue={selectValue}
+              onValueChange={(val) => setSelectValue(val)}
+              size="auto"
+            />
+          )}
 
           {renderComponent(selectValue)}
         </div>

@@ -1,54 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./WeekPlanComponent.scss";
-
 import moment from "moment";
-
 import { useWindowSize } from "../../customHook/useWindowSize";
 
+//Components
 import WeekPlanHeader from "../weekPlanHeader/WeekPlanHeader";
 import WeekPlanContentWrapper from "../weekPlanContentWrapper/WeekPlanContentWrapper";
 import WeekPlanAdd from "../weekPlanAdd/WeekPlanAdd";
 
-import tempData2 from "../../data/tempPlanData2.json";
+//Context
+import { AppContext } from "../../context/AppContext";
+import { WeekPlanContext } from "../../context/WeekPlanContext";
 
-const dayArray = [
-  {
-    dayNumber: 1,
-    dayName: "Poniedziałek",
-  },
-  {
-    dayNumber: 2,
-    dayName: "Wtorek",
-  },
-  {
-    dayNumber: 3,
-    dayName: "Środa",
-  },
-  {
-    dayNumber: 4,
-    dayName: "Czwartek",
-  },
-  {
-    dayNumber: 5,
-    dayName: "Piątek",
-  },
-  {
-    dayNumber: 6,
-    dayName: "Sobota",
-  },
-  {
-    dayNumber: 7,
-    dayName: "Niedziela",
-  },
-];
+//Data
+import {dayArray} from "../../data/staticData"
 
 const WeekPlanComponent = () => {
+  const { actionType, appState, appDispatch } = useContext(AppContext);
+  const { weekPlanAction, weekPlanStatus, weekPlanDispatch } = useContext(
+    WeekPlanContext
+  );
+
   const [currentHours, setHours] = useState(moment().hours());
   const [currentMinutes, setMinutes] = useState(moment().minutes());
   const [currentSecond, setSecond] = useState(moment().seconds());
-
-  const [showAdd, setShowAdd] = useState(false);
-
   const [mobile, setMobile] = useState(false);
   const [dayNumber, setDayNumber] = useState(moment().days());
 
@@ -80,19 +55,23 @@ const WeekPlanComponent = () => {
   }, [currentHours]);
 
   useEffect(() => {
-    if(dayNumber < 1) {
-      setDayNumber(7)
+    if (dayNumber < 1) {
+      setDayNumber(7);
     }
-    if(dayNumber > 7) {
-      setDayNumber(1)
+    if (dayNumber > 7) {
+      setDayNumber(1);
     }
-  }, [dayNumber])
+  }, [dayNumber]);
 
   return (
     <div className="weekPlanComponent">
       <WeekPlanHeader
         headerTitle="Tygodniowy plan"
-        addClick={() => setShowAdd(true)}
+        addClick={() =>
+          appDispatch({
+            type: actionType.addToPlanMenu,
+          })
+        }
         leftClick={() => setDayNumber(dayNumber - 1)}
         rightClick={() => setDayNumber(dayNumber + 1)}
       />
@@ -102,7 +81,7 @@ const WeekPlanComponent = () => {
             <div className="weekPlanComponent__wrapper__headers">
               {dayArray.map((item) => {
                 return (
-                  <div className="weekPlanComponent__wrapper__headers__items">
+                  <div key={item.dayNumber} className="weekPlanComponent__wrapper__headers__items">
                     {item.dayName}
                   </div>
                 );
@@ -116,7 +95,6 @@ const WeekPlanComponent = () => {
                     key={item.dayNumber}
                     planHourStart={7}
                     dayNumber={item.dayNumber}
-                    data={tempData2}
                   />
                 );
               })}
@@ -126,19 +104,19 @@ const WeekPlanComponent = () => {
 
         {mobile && (
           <>
-            <div className="weekPlanComponent__wrapper__headers">
+            {/* <div className="weekPlanComponent__wrapper__headers">
               {dayArray.map((item, index) => {
                 if (index === dayNumber - 1) {
                   return (
-                    <div className="weekPlanComponent__wrapper__headers__items">
+                    <div key={item.dayNumber} className="weekPlanComponent__wrapper__headers__items">
                       {item.dayName}
                     </div>
                   );
                 }
               })}
-            </div>
+            </div> */}
 
-            <div id="test" className="weekPlanComponent__wrapper__content">
+            {/* <div id="test" className="weekPlanComponent__wrapper__content">
               {dayArray.map((item, index) => {
                 if (index === dayNumber - 1) {
                   return (
@@ -146,17 +124,16 @@ const WeekPlanComponent = () => {
                       key={item.dayNumber}
                       planHourStart={7}
                       dayNumber={item.dayNumber}
-                      data={tempData2}
                     />
                   );
                 }
               })}
-            </div>
+            </div> */}
           </>
         )}
       </div>
 
-      {showAdd && <WeekPlanAdd onClick={() => setShowAdd(false)} />}
+      {appState.planAddEdit.value && <WeekPlanAdd />}
     </div>
   );
 };

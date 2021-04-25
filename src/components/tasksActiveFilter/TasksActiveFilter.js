@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./TasksActiveFilter.scss";
-import "../../globalStyle/forms.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Components
 import CheckboxComponent from "../checkboxComponent/CheckboxComponent";
 import SelectComponent from "../../components/selectComponent/SelectComponent";
+import InputComponent from "../inputComponent/InputComponent";
 
-import sortTypeTask from "../../data/sortTypeTask.json";
+//Data
+import {taskSelect} from '../../data/selectData'
 
-const TasksActiveFilter = (props) => {
+const TasksActiveFilter = ({
+  setSearch,
+  setSelect,
+  setPriority,
+  initialValue,
+}) => {
   const [showFilter, setShowFilter] = useState(false);
 
   const getSearchValue = (event) => {
-    event.preventDefault();
-    props.setSearch(event.target.value);
-  }
-
-  useEffect(() => {
-    props.setSelect(sortTypeTask[0].sortType)
-  }, [])
+    // event.preventDefault();
+    setSearch(event.target.value);
+  };
 
   return (
     <div className="tasksActiveFilter">
@@ -35,24 +37,30 @@ const TasksActiveFilter = (props) => {
       {showFilter && (
         <>
           <div className="tasksActiveFilter__inputs">
-            <label className="labelStyle">Szukaj</label>
-            <input onChange={getSearchValue} className="inputStyle" type="text" placeholder="Szukaj" />
+            <InputComponent
+              orientation="horizontal"
+              labelFor="task-title"
+              type="text"
+              placeholder="Szukaj"
+              getValue={getSearchValue}
+            />
+
             <CheckboxComponent
-              checkboxName="priority"
+              checkboxName="priority-active"
               checkboxTitle="Piorytet"
-              onValueChange={props.setPriority}
+              onValueChange={setPriority}
             />
           </div>
 
           <div className="tasksActiveFilter__inputs">
             <SelectComponent
-              optionsData={sortTypeTask}
-              onValueChange={(val) => props.setSelect(val)}
+              optionsData={taskSelect}
+              initialValue={initialValue}
+              onValueChange={(val) => setSelect(val)}
             />
           </div>
         </>
       )}
-      
     </div>
   );
 };

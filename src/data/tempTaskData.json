@@ -14,42 +14,14 @@
     "taskStatus": false
   },
   {
-    "key": "serverTime1",
+    "key": "serverTime3",
     "taskTitle": "test",
     "taskDate": "12.04.2021",
     "taskDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi euismod facilisis neque, quis finibus ipsum imperdiet a. Sed bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus eget nisl eu lacus pulvinar semper eget in libero.",
     "taskStatus": false
   },
   {
-    "key": "serverTime2",
-    "taskTitle": "test2",
-    "taskDate": "12.04.2021",
-    "taskDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi euismod facilisis neque, quis finibus ipsum imperdiet a. Sed bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus eget nisl eu lacus pulvinar semper eget in libero.",
-    "taskStatus": false
-  },
-  {
-    "key": "serverTime1",
-    "taskTitle": "test",
-    "taskDate": "12.04.2021",
-    "taskDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi euismod facilisis neque, quis finibus ipsum imperdiet a. Sed bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus eget nisl eu lacus pulvinar semper eget in libero.",
-    "taskStatus": false
-  },
-  {
-    "key": "serverTime2",
-    "taskTitle": "test2",
-    "taskDate": "12.04.2021",
-    "taskDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi euismod facilisis neque, quis finibus ipsum imperdiet a. Sed bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus eget nisl eu lacus pulvinar semper eget in libero.",
-    "taskStatus": false
-  },
-  {
-    "key": "serverTime1",
-    "taskTitle": "test",
-    "taskDate": "12.04.2021",
-    "taskDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi euismod facilisis neque, quis finibus ipsum imperdiet a. Sed bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus eget nisl eu lacus pulvinar semper eget in libero.",
-    "taskStatus": false
-  },
-  {
-    "key": "serverTime2",
+    "key": "serverTime4",
     "taskTitle": "test2",
     "taskDate": "12.04.2021",
     "taskDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi euismod facilisis neque, quis finibus ipsum imperdiet a. Sed bibendum orci ornare, eleifend urna sed, tristique nulla. Vivamus eget nisl eu lacus pulvinar semper eget in libero.",

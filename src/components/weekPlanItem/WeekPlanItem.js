@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./WeekPlanItem.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { AppContext } from "../../context/AppContext";
+
 const WeekPlanItem = ({ background, top, height, data }) => {
+  const { actionType, appState, appDispatch } = useContext(AppContext);
   const style = {
     background: `${background}`,
     top: `${top}px`,
@@ -15,11 +18,15 @@ const WeekPlanItem = ({ background, top, height, data }) => {
       className={`weekPlanItem ${height <= 25 ? "weekPlanItem--small" : ""}`}
     >
       <div className="weekPlanItem__iconWrapper">
-        <div className="weekPlanItem__iconWrapper__icon weekPlanItem__iconWrapper__icon--edit">
-          <FontAwesomeIcon
-            // onClick={addClick}
-            icon="edit"
-          />
+        <div
+          onClick={() =>
+            appDispatch({
+              type: actionType.editInPlanMenu,
+            })
+          }
+          className="weekPlanItem__iconWrapper__icon weekPlanItem__iconWrapper__icon--edit"
+        >
+          <FontAwesomeIcon icon="edit" />
         </div>
 
         <div className="weekPlanItem__iconWrapper__icon weekPlanItem__iconWrapper__icon--delete">
@@ -30,9 +37,9 @@ const WeekPlanItem = ({ background, top, height, data }) => {
         </div>
       </div>
 
-      <div className="weekPlanItem__name">{data.name}</div>
+      <div className="weekPlanItem__name">{data.title}</div>
       <div className="weekPlanItem__hour">
-        {data.hoursStart + ":" + data.hoursEnd}
+        {data.hourStart + ":" + data.hourEnd}
       </div>
     </div>
   );

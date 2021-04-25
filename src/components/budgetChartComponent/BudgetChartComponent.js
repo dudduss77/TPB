@@ -5,8 +5,8 @@ import HeaderComponent from '../headerComponent/HeaderComponent'
 import BudgetChartFilter from '../budgetChartFilter/BudgetChartFilter'
 
 const BudgetChartComponent = (props) => {
-  const [chartTime, setChartTime] = useState("");
-  const [chartType, setChartType] = useState("");
+  const [chartTime, setChartTime] = useState("day");
+  const [chartType, setChartType] = useState("ordinary");
 
   return (
     <div className="budgetChartComponent">
