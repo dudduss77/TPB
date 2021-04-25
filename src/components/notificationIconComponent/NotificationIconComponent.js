@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './NotificationIconComponent.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const NotificationIconComponent = (props) => {
+import {AppContext} from '../../context/AppContext'
+
+const NotificationIconComponent = () => {
+  const {actionType, appDispatch} = useContext(AppContext)
   return (
-    <div className="notificationIconComponent">
-      <FontAwesomeIcon className="notificationIconComponent__icon" onClick={props.onNotificationClick} icon="bell"/>
+    <div onClick={() => appDispatch({type: actionType.showNotifyMenu})} className="notificationIconComponent">
+      <FontAwesomeIcon className="notificationIconComponent__icon" icon="bell"/>
     </div>
   )
 }

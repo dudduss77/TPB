@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState, useEffect, useContext} from "react";
 import "./WeekPlanContentWrapper.scss";
 
 import WeekPlanItem from "../weekPlanItem/WeekPlanItem";
+
+import { WeekPlanContext } from "../../context/WeekPlanContext";
 
 const hoursToFloat = (value, planHourStart) => {
   let temp;
@@ -16,13 +18,12 @@ const hoursToFloat = (value, planHourStart) => {
 const createPlan = (dayNumber, planHourStart, data) => {
   let modData;
   let items = [];
-  modData = data.filter((value) => value.day === dayNumber);
-
+  modData = data.filter((value) => parseInt(value.dayNumber) === dayNumber);
+  // console.log("data",data)
+  // console.log("modDat", modData)
   for (let i = 0; i < modData.length; i++) {
-    let itemsLen = modData[i].items.length;
-    for (let j = 0; j < itemsLen; j++) {
-      let hoursStart = modData[i].items[j].hoursStart;
-      let hoursEnd = modData[i].items[j].hoursEnd;
+      let hoursStart = modData[i].hourStart;
+      let hoursEnd = modData[i].hourEnd;
 
       hoursStart = hoursToFloat(hoursStart, planHourStart);
       hoursEnd = hoursToFloat(hoursEnd, planHourStart);
@@ -31,29 +32,39 @@ const createPlan = (dayNumber, planHourStart, data) => {
 
       items.push(
         <WeekPlanItem
-          key={modData[i].items[j].id}
-          background={modData[i].items[j].color}
+          key={modData[i].id}
+          background={modData[i].background}
           top={hoursStart * 100}
           height={hoursDiff * 100}
 
-          data={modData[i].items[j]}
+          data={modData[i]}
         />
       );
-    }
   }
 
   console.log(items);
   return items;
 };
 
-const WeekPlanContentWrapper = ({ planHourStart, dayNumber, data }) => {
-  console.log(dayNumber)
+const WeekPlanContentWrapper = ({ planHourStart, dayNumber }) => {
+  const [data, setData] = useState([])
+  const [generateBlock, setGenerateBlock] = useState([]);
+  const { weekPlanAction, weekPlanStatus, weekPlanDispatch } = useContext(
+    WeekPlanContext
+  );
+
+  useEffect(() => {
+    setGenerateBlock(createPlan(dayNumber, planHourStart, weekPlanStatus))
+  }, [weekPlanStatus, dayNumber, planHourStart])
+
+  console.log(planHourStart, dayNumber)
+
   const createHours = () => {
     const items = [];
     for (let i = planHourStart-1; i <= 23; i++) {
       items.push(
         [
-          <div className="weekPlanContentWrapper__hours__item">{i}:00</div>
+          <div key={i} className="weekPlanContentWrapper__hours__item">{i}:00</div>
         ]
       );
 
@@ -64,7 +75,7 @@ const WeekPlanContentWrapper = ({ planHourStart, dayNumber, data }) => {
   return (
     <div className="weekPlanContentWrapper">
       <div className="weekPlanContentWrapper__items">
-        {createPlan(dayNumber, planHourStart, data)}
+        {generateBlock}
       </div>
       <div className="weekPlanContentWrapper__hours">{createHours()}</div>
     </div>

@@ -7,10 +7,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { routes } from "../../routeConfig";
 
 //Context
-import { TaskContext } from '../../App'
+import {AppContext} from '../../context/AppContext'
 
-//Actions
-import {ACTIONS} from '../../reducers/taskReducer'
 
 //Components
 import TopComponent from "../../components/topComponent/TopComponent";
@@ -21,12 +19,11 @@ import NotifyComponent from '../../components/notifyComponent/NotifyComponent'
 
 
 const LayoutView = () => {
-  const [showNotification, setShowNotification] = useState(false);
-  const [showAdd, setShowAdd] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const size = useWindowSize();
 
-  const taskContext = useContext(TaskContext);
+  const {appState} = useContext(AppContext);
+
 
   document.documentElement.style.setProperty('--vh', `${size.height *0.01}px`)
   return (
@@ -34,9 +31,6 @@ const LayoutView = () => {
     <Router>
       <div className="layoutView__top">
         <TopComponent
-          onNotificationClick={() => setShowNotification(true)}
-          onAddClick={() => setShowAdd(true)}
-          // onAddClick={() => taskContext.tasksDispatch({type: ACTIONS.ADDTASK, payload: {taskTitle: 'Test'}})}
           onHamburgerClick={() => setShowMenu(!showMenu)}
         />
       </div>
@@ -78,16 +72,14 @@ const LayoutView = () => {
           </Switch>
         </div>
       </Router>
-      {showAdd && (
+      {appState.addEdit.value && (
         <>
-        <AddComponent
-          setShowAdd={() => setShowAdd(false)}
-        />
+        <AddComponent />
         </>
       )}
 
-      {showNotification && (
-        <NotifyComponent close={() => setShowNotification(false)}/>
+      {appState.showNotify.value && (
+        <NotifyComponent />
       )}
       
         {/* <RaportView/> */}

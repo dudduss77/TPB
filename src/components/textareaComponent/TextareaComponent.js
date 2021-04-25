@@ -1,18 +1,18 @@
 import React from 'react'
 import './TextareaComponent.scss'
 
-const TextareaComponent = (props) => {
+const TextareaComponent = ({size="auto", label, getValue, initialValue=""}) => {
 
   const getTextareaValue = (event) => {
     event.preventDefault();
-    props.getValue(event.target.value);
+    getValue(event.target.value);
   }
   return (
-    <div className={`textareaComponent textareaComponent--${props.size}`}>
+    <div className={`textareaComponent textareaComponent--${size}`}>
       <label className="textareaComponent__label">
-        {props.label}
+        {label}
       </label>
-      <textarea onChange={getTextareaValue} className="textareaComponent__textarea"></textarea>
+      <textarea onChange={getTextareaValue} value={initialValue} className="textareaComponent__textarea"></textarea>
     </div>
   )
 }

@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./BudgetFilter.scss";
-import "../../globalStyle/forms.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Components
+import InputComponent from "../inputComponent/InputComponent";
 import CheckboxComponent from "../checkboxComponent/CheckboxComponent";
 import SelectComponent from "../../components/selectComponent/SelectComponent";
 
-import sortTypeTask from "../../data/sortTypeTask.json";
+//Data
+import {budgetSelect} from "../../data/selectData"
 
-const BudgetFilter = (props) => {
+const BudgetFilter = ({
+  setStartDate,
+  setEndDate,
+  setSelect,
+  setSaveMoney,
+  checkboxInitialValue,
+  selectInitialValue,
+}) => {
   const [showFilter, setShowFilter] = useState(false);
-
-  const getStartDate = (event) => {
-    event.preventDefault();
-    props.setStartDate(event.target.value);
-  };
-
-  const getEndDate = (event) => {
-    event.preventDefault();
-    props.setEndDate(event.target.value);
-  };
-
-  useEffect(() => {
-    props.setSelect(sortTypeTask[0].sortType)
-  }, [])
 
   return (
     <div className="budgetFilter">
@@ -40,26 +34,35 @@ const BudgetFilter = (props) => {
       {showFilter && (
         <>
           <div className="budgetFilter__inputs">
-            <label className="labelStyle" htmlFor="dateStart">
-              Od
-            </label>
-            <input onChange={getStartDate} className="inputStyle" id="dateStart" type="date" />
-            <label className="labelStyle" htmlFor="dateEnd">
-              Do
-            </label>
-            <input onChange={getEndDate} className="inputStyle" id="dateEnd" type="date" />
+            <InputComponent
+              orientation="horizontal"
+              labelFor="budget-date-start"
+              label="Od"
+              type="date"
+              getValue={setStartDate}
+            />
+
+            <InputComponent
+              orientation="horizontal"
+              labelFor="budget-date-end"
+              label="Do"
+              type="date"
+              getValue={setEndDate}
+            />
 
             <CheckboxComponent
+              initialValue={checkboxInitialValue}
               checkboxName="saveMoney"
               checkboxTitle="Oszczędności"
-              onValueChange={props.setSaveMoney}
+              onValueChange={setSaveMoney}
             />
           </div>
 
           <div className="budgetFilter__inputs">
             <SelectComponent
-              optionsData={sortTypeTask}
-              onValueChange={(val) => props.setSelect(val)}
+              initialValue={selectInitialValue}
+              optionsData={budgetSelect}
+              onValueChange={(val) => setSelect(val)}
             />
           </div>
         </>

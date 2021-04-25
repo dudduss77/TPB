@@ -22,7 +22,7 @@ const BudgetSettings = () => {
           // getValue={setNewEmail}
         />
 
-        <ButtonComponent buttonName="Ustaw" />
+        <ButtonComponent size="small" buttonName="Ustaw" />
       </div>
     </div>
   );

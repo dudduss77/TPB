@@ -1,13 +1,23 @@
-import React from 'react'
-import './RadioInputComponent.scss'
+import React from "react";
+import "./RadioInputComponent.scss";
 
-const RadioInputComponent = (props) => {
+const RadioInputComponent = ({ labelFor, name, label, getValue, defaultChecked=false }) => {
   return (
     <div className="radioInputComponent">
-      <input className="radioInputComponent__input" type="radio" id={props.labelFor} name={props.name}/>
-      <label className="radioInputComponent__label" htmlFor={props.labelFor}>{props.label}</label>
+      <input
+        className="radioInputComponent__input"
+        type="radio"
+        id={labelFor}
+        name={name}
+        defaultChecked={defaultChecked}
+        value={labelFor}
+        onChange={(event) => getValue(event.target.value) }
+      />
+      <label className="radioInputComponent__label" htmlFor={labelFor}>
+        {label}
+      </label>
     </div>
-  )
-}
+  );
+};
 
-export default RadioInputComponent
+export default RadioInputComponent;

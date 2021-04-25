@@ -1,30 +1,28 @@
-import React, {useReducer} from "react";
+import React from "react";
 import "./App.scss";
 
-import './fontLibrary'
+import "./fontLibrary";
 
 import LayoutView from "./view/LayoutView/LayoutView";
 
-
-//Reducers
-import taskReducer from './reducers/taskReducer';
-
-//InitialState
-const taskInitialState = [];
-
 //Context
-export const TaskContext = React.createContext();
-
-//Data
+import AppProvider from "./context/AppContext";
+import TaskProvider from "./context/TaskContext";
+import GoalProvider from "./context/GoalContext";
+import WeekPlanProvider from "./context/WeekPlanContext";
 
 const App = () => {
-  const [tasks, dispatch] = useReducer(taskReducer, taskInitialState);
   return (
-    <TaskContext.Provider value={{tasksData: tasks, tasksDispatch: dispatch}}>
-      <LayoutView />
-    </TaskContext.Provider>
-  ) 
-}
-
+    <AppProvider>
+      <TaskProvider>
+        <GoalProvider>
+          <WeekPlanProvider>
+            <LayoutView />
+          </WeekPlanProvider>
+        </GoalProvider>
+      </TaskProvider>
+    </AppProvider>
+  );
+};
 
 export default App;
