@@ -10,17 +10,15 @@ import WeekPlanAdd from "../weekPlanAdd/WeekPlanAdd";
 
 //Context
 import { AppContext } from "../../context/AppContext";
-import { WeekPlanContext } from "../../context/WeekPlanContext";
+import { UserContext } from "../../context/UserContext";
 
 //Data
 import {dayArray} from "../../data/staticData"
 
 const WeekPlanComponent = () => {
   const { actionType, appState, appDispatch } = useContext(AppContext);
-  const { weekPlanAction, weekPlanStatus, weekPlanDispatch } = useContext(
-    WeekPlanContext
-  );
-
+  const { userAction, userStatus, userDispatch } = useContext(UserContext);
+  
   const [currentHours, setHours] = useState(moment().hours());
   const [currentMinutes, setMinutes] = useState(moment().minutes());
   const [currentSecond, setSecond] = useState(moment().seconds());
@@ -51,8 +49,8 @@ const WeekPlanComponent = () => {
   });
 
   useEffect(() => {
-    document.getElementById("test").scrollTop = (currentHours - 6) * 100; //Dodać tutaj zmienną od kiedy się plan zaczyna
-  }, [currentHours]);
+    document.getElementById("test").scrollTop = (currentHours - userStatus.weekPlanStart) * 100; //Dodać tutaj zmienną od kiedy się plan zaczyna
+  }, [currentHours, userStatus]);
 
   useEffect(() => {
     if (dayNumber < 1) {

@@ -1,6 +1,54 @@
 {
-  "user": {},
-  "tasks": [],
-  "goals": [],
-  "weekPlan": []
+  "user": {
+    "id": 1,
+    "name": "Jan",
+    "surname": "Kowalski",
+    "email": "jankowalski@gmail.com",
+    "password": "123456",
+    "taskNotify": false,
+    "expenseNotify": false,
+    "goalNotify": false,
+    "budgetValue": 3500,
+    "budgetStartDay": "6",
+    "weekPlanStart": 11,
+    "saveMoney": 1000,
+    "saveMoneySettings": "add-to-budget"
+  },
+  "tasks": [
+    {
+      "id": 1619556447010,
+      "title": "Test",
+      "desc": "",
+      "date": "2021-04-28",
+      "priority": false,
+      "status": null
+    }
+  ],
+  "goals": [
+    {
+      "id": 1619556467393,
+      "title": "Test",
+      "desc": "",
+      "endDate": "2021-04-30",
+      "startValue": "0",
+      "actualValue": "0",
+      "toValue": "200",
+      "isInRaport": false,
+      "done": false
+    }
+  ],
+  "weekPlan": [],
+  "category": [
+    {
+      "id": 1619454864539,
+      "selectHeader": "Jedzenie",
+      "selectValue": "jedzenie"
+    },
+    {
+      "id": 1619455259373,
+      "selectHeader": "Hobby",
+      "selectValue": "hobby"
+    }
+  ],
+  "expense": []
 }

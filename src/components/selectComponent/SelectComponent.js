@@ -4,14 +4,33 @@ import "./SelectComponent.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SelectComponent = ({size, label, optionsData, initialValue, onValueChange}) => {
+const SelectComponent = ({
+  size,
+  label,
+  optionsData,
+  initialValue,
+  onValueChange,
+}) => {
   const [showOptions, setShowOptions] = useState(false);
   const [actualValue, setActualValue] = useState();
 
   useEffect(() => {
-    let [{selectHeader}] = optionsData.filter(item => item.selectValue === initialValue)
-    setActualValue(selectHeader)
-  }, [initialValue, optionsData])
+    if (initialValue) {
+      if (
+        optionsData.filter((item) => item.selectValue === initialValue).length
+      ) {
+        let [{ selectHeader }] = optionsData.filter(
+          (item) => item.selectValue === initialValue
+        );
+
+        setActualValue(selectHeader);
+      } else {
+        setActualValue(optionsData[0].selectHeader);
+      }
+    } else {
+      setActualValue(optionsData[0].selectHeader);
+    }
+  }, [initialValue, optionsData]);
 
   const onSelectChange = (val) => {
     onValueChange(val.target.getAttribute("value"));
@@ -19,9 +38,7 @@ const SelectComponent = ({size, label, optionsData, initialValue, onValueChange}
 
   return (
     <div className={`selectComponent selectComponent--${size}`}>
-      {label && (
-        <label className="selectComponent__label">{label}</label>
-      )}
+      {label && <label className="selectComponent__label">{label}</label>}
 
       <div className="selectComponent__wrapper">
         <div className="selectComponent__wrapper__actual">{actualValue}</div>

@@ -17,6 +17,8 @@ const BudgetFilter = ({
   setSaveMoney,
   checkboxInitialValue,
   selectInitialValue,
+  dateStartInitial,
+  dateEndInitial
 }) => {
   const [showFilter, setShowFilter] = useState(false);
 
@@ -35,6 +37,7 @@ const BudgetFilter = ({
         <>
           <div className="budgetFilter__inputs">
             <InputComponent
+              initialValue={dateStartInitial}
               orientation="horizontal"
               labelFor="budget-date-start"
               label="Od"
@@ -43,6 +46,7 @@ const BudgetFilter = ({
             />
 
             <InputComponent
+              initialValue={dateEndInitial}
               orientation="horizontal"
               labelFor="budget-date-end"
               label="Do"

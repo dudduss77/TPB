@@ -1,7 +1,6 @@
 import React from "react";
 import "./RaportView.scss";
 
-import tempTaskData from "../../data/tempTaskData.json";
 
 import TasksWrapper from "../../components/tasksWrapper/TasksWrapper";
 import ButtonComponent from "../../components/buttonComponent/ButtonComponent";
@@ -22,7 +21,7 @@ const RaportView = () => {
             edit={false}
             trash={false}
             
-            data={tempTaskData}
+            // data={tempTaskData}
           />
         </div>
         <div className="raportView__wrapper__expense">
