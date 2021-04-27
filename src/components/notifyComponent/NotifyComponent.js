@@ -8,7 +8,6 @@ import ExpenseWrapper from "../expenseWrapper/ExpenseWrapper";
 
 import { AppContext } from "../../context/AppContext";
 
-import tempTaskData from "../../data/tempTaskData.json";
 
 const NotifyComponent = (props) => {
   const { actionType, appDispatch } = useContext(AppContext);
@@ -38,7 +37,7 @@ const NotifyComponent = (props) => {
             check={false}
             edit={false}
             trash={false}
-            data={tempTaskData}
+            // data={tempTaskData}
           />
         </div>
         <div className="notifyComponent__wrapper__items">

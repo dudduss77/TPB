@@ -9,7 +9,7 @@ const RadioInputComponent = ({ labelFor, name, label, getValue, defaultChecked=f
         type="radio"
         id={labelFor}
         name={name}
-        defaultChecked={defaultChecked}
+        checked={defaultChecked}
         value={labelFor}
         onChange={(event) => getValue(event.target.value) }
       />

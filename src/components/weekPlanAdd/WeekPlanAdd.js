@@ -24,11 +24,26 @@ const WeekPlanAdd = ({ onClick }) => {
     WeekPlanContext
   );
 
+  const [weekPlanId, setWeekPlanId] = useState("");
   const [color, setColor] = useState();
   const [title, setTitle] = useState("");
   const [dayNumber, setDayNumber] = useState("1");
   const [startHour, setStartHour] = useState("0:00");
   const [endHour, setEndHour] = useState("0:00");
+
+  useEffect(() => {
+    if (appState.planAddEdit.editMode) {
+      const [weekPlanBlock] = weekPlanStatus.filter(
+        (block) => block.id === appState.planAddEdit.id
+      );
+      setWeekPlanId(weekPlanBlock.id);
+      setTitle(weekPlanBlock.title);
+      setDayNumber(weekPlanBlock.dayNumber);
+      setStartHour(weekPlanBlock.hourStart);
+      setEndHour(weekPlanBlock.hourEnd);
+      setColor(weekPlanBlock.background);
+    }
+  }, [weekPlanStatus, appState]);
 
   const onBackgroundClick = (event) => {
     // event.preventDefault();
@@ -57,11 +72,25 @@ const WeekPlanAdd = ({ onClick }) => {
       background: color,
     };
 
-    axios.post('http://localhost:5000/weekPlan', weekPlanBlock)
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
+    if (appState.planAddEdit.editMode) {
+      weekPlanBlock.id = weekPlanId;
+      axios
+        .put(`http://localhost:5000/weekPlan/${weekPlanId}`, weekPlanBlock)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
 
-    weekPlanDispatch({type: weekPlanAction.add, payload: weekPlanBlock})
+      weekPlanDispatch({
+        type: weekPlanAction.edit,
+        payload: { id: weekPlanId, planBlock: weekPlanBlock },
+      });
+    } else {
+      axios
+        .post("http://localhost:5000/weekPlan", weekPlanBlock)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+
+      weekPlanDispatch({ type: weekPlanAction.add, payload: weekPlanBlock });
+    }
   };
 
   return (
@@ -108,7 +137,7 @@ const WeekPlanAdd = ({ onClick }) => {
             <label className="weekPlanAdd__wrapper__colorPicker__label">
               Wybierz kolor
             </label>
-            <CirclePicker onChangeComplete={handleChangeComplete} />
+            <CirclePicker color={color} onChangeComplete={handleChangeComplete} />
           </div>
 
           <ButtonComponent

@@ -14,8 +14,8 @@ const initialState = {
   },
   planAddEdit: {
     value: false,
-    header: "Dodawanie",
     editMode: false,
+    id: null,
   },
 };
 

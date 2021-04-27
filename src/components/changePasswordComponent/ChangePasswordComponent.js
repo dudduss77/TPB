@@ -1,59 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./ChangePasswordComponent.scss";
+import axios from "axios";
 
+//Components
 import ButtonComponent from "../buttonComponent/ButtonComponent";
 import HeaderComponent from "../headerComponent/HeaderComponent";
 import InputComponent from "../inputComponent/InputComponent";
+import ErrorComponent from "../errorComponent/ErrorComponent";
+
+//Context
+import { UserContext } from "../../context/UserContext";
 
 const ChangePasswordComponent = () => {
+  const { userAction, userStatus, userDispatch } = useContext(UserContext);
+
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const [isValidate, setIsValidate] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const submitForm = () => {
-    if (isValidate) {
-      console.log("działa");
-    }
+    axios
+      .patch("http://localhost:5000/user", { password: newPass })
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+
+    userDispatch({ type: userAction.editPassword, payload: newPass });
   };
 
   return (
     <div className="changePasswordComponent">
       <HeaderComponent headerTitle="Zmiana hasła" />
       <div className="changePasswordComponent__wrapper">
-        <div className="changePasswordComponent__wrapper__errorMsg">
-          {errMsg}
-        </div>
+        <ErrorComponent errorMsg={errorMsg} />
 
         <InputComponent
-          orientation="vertical"
+          initialValue={oldPass}
           labelFor="oldPassword"
           label="Stare hasło"
-          type="text"
+          type="password"
           placeholder="Stare hasło"
           getValue={setOldPass}
         />
 
         <InputComponent
-          orientation="vertical"
+          initialValue={newPass}
           labelFor="newPassword"
           label="Nowe hasło"
-          type="text"
+          type="password"
           placeholder="Nowe hasło"
           getValue={setNewPass}
         />
 
         <InputComponent
-          orientation="vertical"
+          initialValue={repeatPass}
           labelFor="repeatPassword"
           label="Powtórz hasło"
-          type="text"
+          type="password"
           placeholder="Powtórz hasło"
           getValue={setRepeatPass}
         />
 
-        <ButtonComponent buttonClick={submitForm} buttonName="Zmień" size="small"/>
+        <ButtonComponent
+          buttonClick={submitForm}
+          buttonName="Zmień"
+          size="small"
+        />
       </div>
     </div>
   );

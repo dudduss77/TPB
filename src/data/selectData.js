@@ -152,3 +152,16 @@ export const weekPlanDay = [
     selectValue: "7",
   },
 ]
+
+export const budgetDay = () => {
+  let day= []
+
+  for(let i = 0; i <= 29; i++) {
+    day.push({
+      selectHeader: i.toString(),
+      selectValue: i.toString(),
+    })
+  }
+
+  return day
+} 
