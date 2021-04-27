@@ -51,6 +51,14 @@
   }
 }
 
+@media screen and (min-width: 1230px) {
+  .dashboardView {
+    &__subMenu {
+      display: none;
+    }
+  }
+}
+
 @media screen and (max-width: 1230px) {
   .dashboardView {
     $heightCalc: calc(var(--vh, 1px) * 100);
